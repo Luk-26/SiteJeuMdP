@@ -1,1 +1,16 @@
-<p>jeumdp works!</p>
+<h1>Jeu maux de passe</h1>
+<div class="game-container">
+    <div id="zone-cartes-mdp">
+        <h2>Cartes mot de passe</h2>
+        @for (carte of cartes; track $index) {
+        <app-cartemdp></app-cartemdp>
+        }
+    </div>
+    <div id="zone-zones-duree">
+        <h2>Zones de durées</h2>
+        @for (zone of zones; track $index) {
+        <app-zoneduree></app-zoneduree>
+        }
+    </div>
+</div>
+<button id="btn-jeu-mdp">VALIDER</button>

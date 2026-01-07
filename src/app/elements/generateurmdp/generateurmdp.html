@@ -1,0 +1,35 @@
+<div class="generator-container">
+    <div class="result-display">
+        <p id="mdp">Cliquer sur générer</p>
+    </div>
+
+    <div class="range-group">
+        <div class="range-label">
+            <label for="longueur-mdp">Longueur du mot de passe</label>
+            <span id="range-value">12</span>
+        </div>
+        <input type="range" min="4" max="128" value="12" id="longueur-mdp"
+            oninput="document.getElementById('range-value').textContent = this.value">
+    </div>
+
+    <div class="options-grid">
+        <div class="checkbox-group">
+            <input type="checkbox" id="majuscule-mdp" checked>
+            <label for="majuscule-mdp">Majuscules (A-Z)</label>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="minuscule-mdp" checked>
+            <label for="minuscule-mdp">Minuscules (a-z)</label>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="chiffre-mdp" checked>
+            <label for="chiffre-mdp">Chiffres (0-9)</label>
+        </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="special-mdp">
+            <label for="special-mdp">Caractères Spéciaux</label>
+        </div>
+    </div>
+
+    <button id="generer-mdp" class="btn-primary">Générer</button>
+</div>

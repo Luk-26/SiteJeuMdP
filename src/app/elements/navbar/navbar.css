@@ -1,9 +1,9 @@
 :host {
     position: sticky;
-    top: 10px;
-    z-index: 1000;
-    display: block;
+    top: 20px;
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 nav {
@@ -11,15 +11,17 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: var(--bg-body);
-    /* White */
-    border: 2px solid var(--color-primary);
-    /* Use primary color for border */
-    border-radius: 15px;
-    /* Manually keeping 15px as per request, or use var(--border-radius-lg) which is 12px */
+    background-color: #FFFFFF;
+    border: 2px solid #507693;
+    border-radius: 12px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    /* Softer shadow */
-    font-family: var(--font-family-body);
+    font-family: 'Open Sans', sans-serif;
+}
+
+nav:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .logo {
@@ -48,17 +50,15 @@ nav {
 
 a {
     text-decoration: none;
-    color: var(--color-text-main);
+    color: #333333;
     font-weight: 500;
-    font-family: var(--font-family-heading);
-    /* Use heading font for menu items */
-    transition: color var(--transition-speed);
+    font-family: 'Montserrat', sans-serif;
+    transition: color 0.3s ease;
 }
 
 a:hover {
-    text-decoration: none;
-    /* Removed underline to use color change instead */
-    color: var(--color-accent);
+    text-decoration: underline;
+    color: #0056b3;
 }
 
 .right-link {
@@ -66,12 +66,11 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: var(--color-accent);
-    /* Make the external link distinct */
+    color: #0056b3;
 }
 
 .link-icon {
     height: 30px;
     width: auto;
-    border-radius: var(--border-radius-sm);
+    border-radius: 4px;
 }

@@ -1,20 +1,16 @@
 /* --- Compact Main Container --- */
 .site-footer {
-    background-color: var(--color-primary);
-    /* Bleu Ardoise */
-    color: var(--color-text-inverse);
+    background-color: #507693;
+    color: #FFFFFF;
     padding: 10px 0;
-    /* Très peu de padding vertical */
     margin-top: auto;
-    /* Push to bottom if flex container */
-    font-family: var(--font-family-body);
+    font-family: 'Open Sans', sans-serif;
     font-size: 0.85rem;
 }
 
 .footer-container {
     display: flex;
     justify-content: space-between;
-    /* Gauche / Droite */
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
@@ -30,11 +26,11 @@
 
 .brand-name {
     font-weight: 600;
-    font-family: var(--font-family-heading);
+    font-family: 'Montserrat', sans-serif;
 }
 
 .copyright {
-    color: var(--color-secondary);
+    color: #A8BDCE;
     font-size: 0.8rem;
 }
 
@@ -49,14 +45,14 @@
 }
 
 .footer-links a {
-    color: var(--color-text-inverse);
+    color: #FFFFFF;
     text-decoration: none;
-    font-family: var(--font-family-body);
+    font-family: 'Open Sans', sans-serif;
     transition: color 0.2s ease;
 }
 
 .footer-links a:hover {
-    color: var(--color-secondary);
+    color: #A8BDCE;
     text-decoration: underline;
 }
 

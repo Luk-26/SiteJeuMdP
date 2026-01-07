@@ -1,0 +1,65 @@
+:host {
+    display: block;
+    max-width: 1200px;
+    /* Large container to fit both tools */
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    color: #507693;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+/* Use a grid or flex container to layout the two tools side-by-side */
+:host div div {
+    display: flex;
+    flex-wrap: wrap;
+    /* Wrap on smaller screens */
+    gap: 30px;
+    justify-content: center;
+    align-items: stretch;
+    /* Cards have equal height */
+}
+
+/* Styles common to both tool containers */
+#generateur-mdp,
+#testeur-mdp {
+    flex: 1;
+    min-width: 300px;
+    /* Prevent them from becoming too thin */
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+    /* Card shadow */
+    padding: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e0e0e0;
+    /* Subtle border */
+}
+
+#generateur-mdp:hover,
+#testeur-mdp:hover {
+    transform: scale(1.005);
+    /* Gentle lift effect */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: #507693;
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    /* Make title occupy full row in grid */
+    grid-column: 1 / -1;
+    text-align: center;
+    width: 100%;
+    /* Decoration line underneath */
+    border-bottom: 2px solid #A8BDCE;
+}

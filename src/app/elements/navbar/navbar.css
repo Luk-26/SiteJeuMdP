@@ -11,12 +11,15 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: white;
-    border-style: solid;
+    background-color: var(--bg-body);
+    /* White */
+    border: 2px solid var(--color-primary);
+    /* Use primary color for border */
     border-radius: 15px;
-    border-width: 2px;
-    border-color: black;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    /* Manually keeping 15px as per request, or use var(--border-radius-lg) which is 12px */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Softer shadow */
+    font-family: var(--font-family-body);
 }
 
 .logo {
@@ -25,11 +28,8 @@ nav {
 }
 
 .logo img {
-    /*taille de l'image : 1931px x 261px*/
     height: 50px;
-    /* Force a fixed height to prevent overflow and massive width */
     width: auto;
-    /* Maintain aspect ratio */
 }
 
 .center-links {
@@ -48,12 +48,17 @@ nav {
 
 a {
     text-decoration: none;
-    color: black;
+    color: var(--color-text-main);
     font-weight: 500;
+    font-family: var(--font-family-heading);
+    /* Use heading font for menu items */
+    transition: color var(--transition-speed);
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    /* Removed underline to use color change instead */
+    color: var(--color-accent);
 }
 
 .right-link {
@@ -61,10 +66,12 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 10px;
+    color: var(--color-accent);
+    /* Make the external link distinct */
 }
 
 .link-icon {
     height: 30px;
     width: auto;
-    border-radius: 5px;
+    border-radius: var(--border-radius-sm);
 }

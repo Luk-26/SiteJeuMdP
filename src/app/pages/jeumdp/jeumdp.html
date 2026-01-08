@@ -19,4 +19,53 @@
         }
     </div>
 </div>
-<button id="btn-jeu-mdp">VALIDER</button>
+<button (click)="btnValider()" id="btn-jeu-mdp">VALIDER</button>
+
+@if (currentPopup !== 'NONE') {
+<div class="popup-overlay">
+    <div class="popup-content" [ngClass]="{'victory': currentPopup === 'VICTORY'}">
+
+        <!-- RULES -->
+        @if (currentPopup === 'RULES') {
+        <h2>Règles du jeu</h2>
+        <p>Bienvenue dans le jeu maux de passe !</p>
+        <p>Votre objectif est d'associer chaque mot de passe à sa durée de craquage estimée.</p>
+        <p>Glissez les cartes de gauche vers les zones correspondantes à droite.</p>
+        <button (click)="closePopup()" class="btn-popup">Commencer</button>
+        }
+
+        <!-- INCOMPLETE -->
+        @if (currentPopup === 'INCOMPLETE') {
+        <h2>Placement incomplet</h2>
+        <p>Vous n'avez pas placé toutes les cartes.</p>
+        <p>Veuillez associer chaque mot de passe à une durée avant de valider.</p>
+        <button (click)="closePopup()" class="btn-popup">Continuer</button>
+        }
+
+        <!-- VICTORY -->
+        @if (currentPopup === 'VICTORY') {
+        <div class="victory-icon">🎉</div>
+        <h2>Félicitations !</h2>
+        <p>Vous avez correctement classé tous les mots de passe !</p>
+        <p>Vous connaissez maintenant les ordres de grandeur de la sécurité des mots de passe.</p>
+        <div class="popup-actions">
+            <button (click)="resetGame()" class="btn-popup">Nouvelle partie</button>
+            <button (click)="goToTools()" class="btn-popup secondary">Boîte à outils</button>
+        </div>
+        }
+
+        <!-- DEFEAT -->
+        @if (currentPopup === 'DEFEAT') {
+        <h2>Dommage...</h2>
+        <p>Il y a des erreurs dans votre classement.</p>
+        <p>Ne vous découragez pas, essayez encore !</p>
+        <div class="popup-actions hidden-on-mobile"> <!-- Stack buttons vertically -->
+            <button (click)="closePopup()" class="btn-popup">Continuer la partie</button>
+            <button (click)="resetPlacement()" class="btn-popup secondary">Remettre les cartes</button>
+            <button (click)="resetGame()" class="btn-popup destroy">Nouvelle partie</button>
+        </div>
+        }
+
+    </div>
+</div>
+}

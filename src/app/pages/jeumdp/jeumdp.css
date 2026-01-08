@@ -16,6 +16,19 @@
     margin-bottom: 30px;
 }
 
+@media (max-width: 768px) {
+    .game-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #zone-cartes-mdp,
+    #zone-zones-duree {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
 /* Common visual properties */
 #zone-cartes-mdp,
 #zone-zones-duree {
@@ -28,25 +41,27 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
 }
 
-/* Password Card Zone - Flexbox for fluid reordering */
+/* Zone des cartes mot de passe - Flexbox pour un réarrangement fluide */
 #zone-cartes-mdp {
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
+    /* Centrer la collection d'éléments tout en gardant le flux */
     justify-content: center;
-    /* Center the collection of items but keeping flow */
     gap: 15px;
 }
 
-/* Duration Zones - Grid for structured slots */
+/* Zones de durée - Grille pour des emplacements structurés */
 #zone-zones-duree {
     display: grid;
-    /* Create columns of at least 160px wide, fitting as many as possible */
+    /* Créer des colonnes d'au moins 160px de large, en insérant autant que possible */
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    /* Gap between rows and columns */
+    /* Ecart entre les lignes et les colonnes */
     gap: 15px;
-    /* Align items in their cells */
+    /* Aligner les éléments dans leurs cellules */
     justify-items: center;
+    /* Centrer le contenu de la grille lui-même */
+    justify-content: center;
     align-content: start;
 }
 
@@ -119,6 +134,7 @@ h2 {
 /* Ensure dropped cards sit on top of the dashed zone */
 .drop-zone-slot>app-cartemdp {
     z-index: 10;
+    opacity: 0.69;
 }
 
 /* Drag Preview Styling - Element being dragged */
@@ -243,8 +259,8 @@ h2 {
 }
 
 .popup-content.victory {
-    border-color: #FFD700;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    border-color: #507693;
+    box-shadow: 0 0 25px rgba(80, 118, 147, 0.6);
 }
 
 @keyframes bounceAndRotate {
@@ -256,5 +272,20 @@ h2 {
 
     50% {
         transform: translateY(-15px) rotate(5deg);
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Override Grid to Flexbox on Mobile to center orphans */
+    #zone-zones-duree {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #zone-zones-duree>.drop-zone-slot {
+        width: 160px;
+        flex-grow: 0;
     }
 }

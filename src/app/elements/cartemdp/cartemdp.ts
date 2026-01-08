@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-cartemdp',
@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './cartemdp.css',
 })
 export class Cartemdp {
-
+  @Input() texte: string = '';
 }

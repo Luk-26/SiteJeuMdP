@@ -16,15 +16,30 @@
     margin-bottom: 30px;
 }
 
-/* Common grid properties */
+/* Common visual properties */
 #zone-cartes-mdp,
 #zone-zones-duree {
     flex: 1;
     min-height: 400px;
     border-radius: 12px;
     padding: 20px;
+    background-color: white;
+    border: 3px solid #507693;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+}
 
-    /* GRID LAYOUT */
+/* Password Card Zone - Flexbox for fluid reordering */
+#zone-cartes-mdp {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    /* Center the collection of items but keeping flow */
+    gap: 15px;
+}
+
+/* Duration Zones - Grid for structured slots */
+#zone-zones-duree {
     display: grid;
     /* Create columns of at least 160px wide, fitting as many as possible */
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -33,9 +48,6 @@
     /* Align items in their cells */
     justify-items: center;
     align-content: start;
-    background-color: white;
-    border: 3px solid #507693;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
 }
 
 #btn-jeu-mdp {
@@ -86,4 +98,55 @@ h2 {
     width: 100%;
     /* Decoration line underneath */
     border-bottom: 2px solid #A8BDCE;
+}
+
+/* Drop Zone Slot Styling */
+.drop-zone-slot {
+    display: grid;
+    grid-template-areas: "stack";
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    /* Ensure it behaves well as a drop target */
+    min-height: 100px;
+}
+
+/* Stack all children of the slot on top of each other */
+.drop-zone-slot>* {
+    grid-area: stack;
+}
+
+/* Ensure dropped cards sit on top of the dashed zone */
+.drop-zone-slot>app-cartemdp {
+    z-index: 10;
+}
+
+/* Drag Preview Styling - Element being dragged */
+.cdk-drag-preview {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+        0 8px 10px 1px rgba(0, 0, 0, 0.14),
+        0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    opacity: 0.9;
+    /* Maintain dimensions if needed */
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+/* Ensure placeholder also sits on top during drag */
+.cdk-drag-placeholder {
+    z-index: 5;
+    opacity: 0.3;
+    background: #ccc;
+    border: 1px dashed #666;
+    border-radius: 4px;
+}
+
+/* Dragging state */
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.zone.cdk-drop-list-dragging .drop-zone-slot:not(.cdk-drag-placeholder),
+.drop-zone-slot.cdk-drop-list-dragging .app-cartemdp:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }

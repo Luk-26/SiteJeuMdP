@@ -1,10 +1,10 @@
-#carte-mdp {
+.carte-mdp {
     background-color: #507693;
     border: 2px solid #507693;
     border-radius: 12px;
     padding: 10px;
-    width: 150px;
-    /* Much smaller width */
+    width: 135px;
+    /* Adjusted width to fit 3 per row */
     height: 80px;
     /* Much smaller height */
     display: flex;
@@ -13,16 +13,18 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
     cursor: grab;
     user-select: none;
-    margin: 5px;
-    margin: 5px;
-    /* Reduced margin */
+    /* margin removed to rely on flex gap */
 }
 
-#carte-mdp:hover {
+.carte-mdp:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: grab;
+}
+
+.carte-mdp:active {
+    cursor: grabbing;
 }
 
 p {
@@ -31,4 +33,9 @@ p {
     text-align: center;
     font-weight: 600;
     color: #333333;
+    /* Force wrapping for long passwords */
+    word-break: break-word;
+    overflow-wrap: break-word;
+    width: 100%;
+    margin: 0;
 }

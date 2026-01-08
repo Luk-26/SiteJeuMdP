@@ -1,15 +1,21 @@
 <h1>Jeu maux de passe</h1>
-<div class="game-container">
-    <div id="zone-cartes-mdp">
+<div class="game-container" cdkDropListGroup>
+    <div id="zone-cartes-mdp" class="zone" cdkDropList cdkDropListOrientation="mixed" [cdkDropListData]="cartes"
+        (cdkDropListDropped)="drop($event)">
         <h2>Cartes mot de passe</h2>
-        @for (carte of cartes; track $index) {
-        <app-cartemdp></app-cartemdp>
+        @for (carte of cartes; track carte) {
+        <app-cartemdp [texte]="carte" cdkDrag></app-cartemdp>
         }
     </div>
     <div id="zone-zones-duree">
         <h2>Zones de durées</h2>
-        @for (zone of zones; track $index) {
-        <app-zoneduree></app-zoneduree>
+        @for (zone of zones; track zone.label) {
+        <div class="drop-zone-slot" cdkDropList [cdkDropListData]="zone.items" (cdkDropListDropped)="drop($event)">
+            <app-zoneduree [duree]="zone.label"></app-zoneduree>
+            @for (item of zone.items; track item) {
+            <app-cartemdp [texte]="item" cdkDrag></app-cartemdp>
+            }
+        </div>
         }
     </div>
 </div>

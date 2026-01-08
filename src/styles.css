@@ -1,1 +1,64 @@
 /* You can add global styles to this file, and also import other style files */
+/* --- GLOBAL LAYOUT --- */
+/* Global variables and styles */
+
+:root {
+    /* --- PALETTE DE COULEURS --- */
+    --color-primary: #507693;
+    /* Bleu Ardoise - Logo Face Sombre */
+    --color-secondary: #A8BDCE;
+    /* Gris Céleste - Logo Face Claire */
+    --color-accent: #0056b3;
+    /* Bleu Action - Boutons & Liens */
+
+    --color-text-main: #333333;
+    /* Gris Anthracite */
+    --color-text-light: #666666;
+    /* Gris moyen pour sous-titres */
+    --color-text-inverse: #FFFFFF;
+    /* Blanc pour texte sur fond bleu */
+
+    --bg-body: #FFFFFF;
+    /* Blanc Pur */
+    --bg-section-alt: #F4F6F8;
+    /* Gris très léger pour alternance */
+
+    /* --- TYPOGRAPHIE --- */
+    /* Nécessite l'import Google Fonts correspondant */
+    --font-family-heading: 'Montserrat', sans-serif;
+    --font-family-body: 'Open Sans', sans-serif;
+
+    /* --- COMPOSANTS UI --- */
+    --border-radius-sm: 4px;
+    --border-radius-md: 6px;
+    /* Standard pour boutons */
+    --border-radius-lg: 12px;
+    /* Pour les cartes (Cards) */
+
+    --box-shadow-card: 0 4px 6px rgba(0, 0, 0, 0.08);
+    --box-shadow-hover: 0 8px 12px rgba(0, 0, 0, 0.15);
+
+    --transition-speed: 0.3s ease;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family-body);
+}
+
+/* Exemple de classe utilitaire pour un Bouton Primaire */
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
+    padding: 10px 20px;
+    border-radius: var(--border-radius-md);
+    border: none;
+    font-family: var(--font-family-heading);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-accent);
+}

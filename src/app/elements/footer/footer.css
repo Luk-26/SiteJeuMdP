@@ -1,4 +1,4 @@
-/* --- Compact Main Container --- */
+/* --- Conteneur principal compact --- */
 .site-footer {
     background-color: #507693;
     color: #FFFFFF;
@@ -17,7 +17,7 @@
     padding: 0 20px;
 }
 
-/* --- Gauche : Brand --- */
+/* --- Gauche : Marque --- */
 .footer-brand {
     display: flex;
     align-items: center;
@@ -34,7 +34,7 @@
     font-size: 0.8rem;
 }
 
-/* --- Droite : Links --- */
+/* --- Droite : Liens --- */
 .footer-links {
     display: flex;
     align-items: center;

@@ -1,16 +1,16 @@
 #zone-duree {
     background-color: white;
     border: 2px dashed #A8BDCE;
-    /* Dashed border for drop zones */
+    /* Bordure en pointillés pour les zones de dépôt */
     border-radius: 12px;
     padding: 10px;
     width: 154px;
-    /* Slightly larger than card width (140px + some padding) */
+    /* Légèrement plus large que la carte (140px + marge) */
     height: 88px;
-    /* Slightly larger than card height (80px + some padding) */
+    /* Légèrement plus haut que la carte (80px + marge) */
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     margin: 5px;
     user-select: none;
 }

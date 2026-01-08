@@ -4,16 +4,16 @@
     border-radius: 12px;
     padding: 10px;
     width: 135px;
-    /* Adjusted width to fit 3 per row */
+    /* Largeur ajustée pour tenir 3 par ligne */
     height: 75px;
-    /* Much smaller height */
+    /* Hauteur beaucoup plus petite */
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
     cursor: grab;
     user-select: none;
-    /* margin removed to rely on flex gap */
+    /* marge supprimée pour compter sur le gap flex */
 }
 
 .carte-mdp:hover {

@@ -1,7 +1,7 @@
 :host {
     display: block;
     max-width: 1200px;
-    /* Large container to fit both tools */
+    /* Grand conteneur pour s'adapter aux deux outils */
     margin: 40px auto;
     padding: 0 20px;
 }
@@ -15,37 +15,37 @@ h1 {
     font-weight: 700;
 }
 
-/* Use a grid or flex container to layout the two tools side-by-side */
+/* Utiliser un conteneur grille ou flex pour disposer les deux outils côte à côte */
 :host div div {
     display: flex;
     flex-wrap: wrap;
-    /* Wrap on smaller screens */
+    /* Retour à la ligne sur les écrans plus petits */
     gap: 30px;
     justify-content: center;
     align-items: stretch;
-    /* Cards have equal height */
+    /* Les cartes ont une hauteur égale */
 }
 
-/* Styles common to both tool containers */
+/* Styles communs aux deux conteneurs d'outils */
 #generateur-mdp,
 #testeur-mdp {
     flex: 1;
     min-width: 300px;
-    /* Prevent them from becoming too thin */
+    /* Les empêcher de devenir trop fins */
     background-color: white;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
-    /* Card shadow */
+    /* Ombre de la carte */
     padding: 30px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid #e0e0e0;
-    /* Subtle border */
+    /* Bordure subtile */
 }
 
 #generateur-mdp:hover,
 #testeur-mdp:hover {
     transform: scale(1.005);
-    /* Gentle lift effect */
+    /* Effet de levée douce */
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -56,10 +56,10 @@ h2 {
     margin-top: 0;
     margin-bottom: 20px;
     padding-bottom: 10px;
-    /* Make title occupy full row in grid */
+    /* Faire en sorte que le titre occupe toute la ligne de la grille */
     grid-column: 1 / -1;
     text-align: center;
     width: 100%;
-    /* Decoration line underneath */
+    /* Ligne de décoration en dessous */
     border-bottom: 2px solid #A8BDCE;
 }

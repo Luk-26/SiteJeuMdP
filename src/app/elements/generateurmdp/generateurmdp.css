@@ -21,6 +21,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    /* Permet aux éléments de se placer côte à côte avec un espacement */
+    gap: 15px;
 }
 
 .result-display p {
@@ -31,6 +33,37 @@
     color: #333333;
     margin: 0;
     word-break: break-all;
+}
+
+/* Bouton Copier */
+.btn-copy {
+    background-color: white;
+    border: 1px solid #507693;
+    color: #507693;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    /* Pour qu'il ne prenne pas toute la hauteur si le flex stretch */
+    align-self: center;
+    white-space: nowrap;
+
+    /* Flexbox pour l'icône */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-copy:hover {
+    background-color: #507693;
+    color: white;
+}
+
+.btn-copy:active {
+    transform: scale(0.98);
 }
 
 /* Range Slider */

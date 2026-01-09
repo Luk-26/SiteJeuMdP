@@ -1,6 +1,17 @@
 <div class="generator-container">
     <div class="result-display">
         <p id="mdp">Cliquer sur générer</p>
+        <button type="button" class="btn-copy" (click)="copierMdp()" title="Copier le mot de passe">
+            <!-- Icône SVG représentant l'action de copier : utilise stroke="currentColor" pour s'adapter à la couleur du texte -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Rectangle représentant le document au premier plan -->
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <!-- Tracé simulant un second document en arrière-plan via des commandes de mouvement (M) et d'arc (a) -->
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Copier</span>
+        </button>
     </div>
 
     <div class="range-group">
@@ -31,5 +42,6 @@
         </div>
     </div>
 
-    <button id="generer-mdp" class="btn-primary">Générer</button>
+    <p id="erreur-msg"></p>
+    <button (click)="genererMdp()" id="generer-mdp" class="btn-primary">Générer</button>
 </div>

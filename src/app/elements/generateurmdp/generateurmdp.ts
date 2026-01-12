@@ -1,86 +1,119 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-generateurmdp',
-  imports: [],
+  imports: [FormsModule, CommonModule],
   templateUrl: './generateurmdp.html',
   styleUrl: './generateurmdp.css',
 })
 export class Generateurmdp {
+  constructor(private cdr: ChangeDetectorRef) { }
+
+  // --- Binding Properties (Liens avec le HTML) ---
+  length: number = 12;
+  useUppercase: boolean = true;
+  useLowercase: boolean = true;
+  useNumbers: boolean = true;
+  useSpecial: boolean = false;
+
+  generatedPassword: string = 'Cliquer sur générer';
+  errorMessage: string = '';
+  copyBtnText: string = 'Copier';
+
+  // --- Logic ---
+
   genererMdp() {
-    const longueur: number = parseInt((document.getElementById('longueur-mdp') as HTMLInputElement).value, 10);
-    const majuscule: boolean = (document.getElementById('majuscule-mdp') as HTMLInputElement).checked;
-    const minuscule: boolean = (document.getElementById('minuscule-mdp') as HTMLInputElement).checked;
-    const chiffre: boolean = (document.getElementById('chiffre-mdp') as HTMLInputElement).checked;
-    const special: boolean = (document.getElementById('special-mdp') as HTMLInputElement).checked;
-
-    let mdp = '';
-
-    const zoneErreur = document.getElementById('erreur-msg');
-
-    if (longueur < 4 || longueur > 128) {
-      if (zoneErreur) {
-        zoneErreur.textContent = 'La longueur doit être comprise entre 4 et 128 caractères';
-        zoneErreur.style.color = 'red';
-      }
+    // 1. Validation
+    if (this.length < 4 || this.length > 128) {
+      this.errorMessage = 'La longueur doit être comprise entre 4 et 128 caractères';
       return;
     }
 
-    if (!majuscule && !minuscule && !chiffre && !special) {
-      if (zoneErreur) {
-        zoneErreur.textContent = 'Au moins un type de caractères doit être sélectionné';
-        zoneErreur.style.color = 'red';
-      }
+    if (!this.useUppercase && !this.useLowercase && !this.useNumbers && !this.useSpecial) {
+      this.errorMessage = 'Au moins un type de caractères doit être sélectionné';
       return;
     }
 
-    const typesSelectionnes: ('minuscule' | 'majuscule' | 'chiffre' | 'special')[] = [];
-    if (majuscule) typesSelectionnes.push('majuscule');
-    if (minuscule) typesSelectionnes.push('minuscule');
-    if (chiffre) typesSelectionnes.push('chiffre');
-    if (special) typesSelectionnes.push('special');
+    this.errorMessage = ''; // Reset error
 
-    if (zoneErreur) {
-      zoneErreur.textContent = '';
-      zoneErreur.style.color = 'inherit';
-    }
-
-    // Zone de génération du mot de passe :
-    for (let i = 0; i < longueur; i++) {
-      const type = this.tirerTypeAleatoire(typesSelectionnes);
-      mdp += this.genererCaractere(type);
-    }
-
-    document.getElementById('mdp')!.textContent = mdp;
-    return;
-  }
-
-  genererCaractere(type: 'minuscule' | 'majuscule' | 'chiffre' | 'special'): string {
+    // 2. Préparation des caractères disponibles via Binding
     const ensembles = {
       minuscule: 'abcdefghijklmnopqrstuvwxyz',
       majuscule: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
       chiffre: '0123456789',
-      special: '!@#$%^&*()_+|{}[]<>?/-='
+      special: '!@#$%^&*()_+{}[]<>?/-='
     };
-    const caracteres = ensembles[type];
-    return caracteres.charAt(Math.floor(Math.random() * caracteres.length));
-  }
 
-  tirerTypeAleatoire(typesSelectionnes: ('minuscule' | 'majuscule' | 'chiffre' | 'special')[]): 'minuscule' | 'majuscule' | 'chiffre' | 'special' {
-    return typesSelectionnes[Math.floor(Math.random() * typesSelectionnes.length)];
+    let availableChars = '';
+    if (this.useLowercase) availableChars += ensembles.minuscule;
+    if (this.useUppercase) availableChars += ensembles.majuscule;
+    if (this.useNumbers) availableChars += ensembles.chiffre;
+    if (this.useSpecial) availableChars += ensembles.special;
+
+    // 3. Génération sécurisée avec window.crypto
+    let newPassword = '';
+
+    // On remplit un tableau d'octets aléatoires (plus sûr que Math.random)
+    const randomValues = new Uint32Array(this.length);
+    window.crypto.getRandomValues(randomValues);
+
+    for (let i = 0; i < this.length; i++) {
+      // On utilise le nombre aléatoire pour choisir un index dans availableChars
+      const randomIndex = randomValues[i] % availableChars.length;
+      newPassword += availableChars.charAt(randomIndex);
+    }
+
+    this.generatedPassword = newPassword;
   }
 
   copierMdp() {
-    const mdp = document.getElementById('mdp')?.textContent;
-    if (mdp && mdp !== 'Cliquer sur générer') {
-      navigator.clipboard.writeText(mdp).then(() => {
-        const btn = document.querySelector('.btn-copy') as HTMLButtonElement;
-        if (btn) {
-          const originalText = btn.innerHTML;
-          btn.innerHTML = 'Copié !';
-          setTimeout(() => btn.innerHTML = originalText, 2000);
-        }
-      });
+    if (!this.generatedPassword || this.generatedPassword === 'Cliquer sur générer') return;
+
+    // Fonction interne pour gérer le succès visuel
+    const onSuccess = () => {
+      this.copyBtnText = 'Copié !';
+      this.cdr.detectChanges();
+      setTimeout(() => {
+        this.copyBtnText = 'Copier';
+        this.cdr.detectChanges();
+      }, 2000);
+    };
+
+    // Tentative 1 : API Clipboard moderne (nécessite souvent HTTPS)
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(this.generatedPassword)
+        .then(onSuccess)
+        .catch(() => this.fallbackCopy(onSuccess)); // Si échec, on tente la méthode "bourrin"
+    } else {
+      // Tentative 2 : Fallback direct si l'API n'existe pas
+      this.fallbackCopy(onSuccess);
     }
+  }
+
+  // Méthode de secours pour copier (marche mieux sur mobile en HTTP/Dev)
+  fallbackCopy(callback: () => void) {
+    const textArea = document.createElement("textarea");
+    textArea.value = this.generatedPassword;
+
+    // S'assurer que le textarea n'est pas visible mais fait partie du document
+    textArea.style.position = "fixed";
+    textArea.style.left = "-9999px";
+    textArea.style.top = "0";
+    document.body.appendChild(textArea);
+
+    textArea.focus();
+    textArea.select();
+
+    try {
+      document.execCommand('copy');
+      callback();
+    } catch (err) {
+      console.error('Impossible de copier', err);
+      // Fallback ultime : on pourrait afficher un prompt, mais c'est intrusif
+    }
+
+    document.body.removeChild(textArea);
   }
 }

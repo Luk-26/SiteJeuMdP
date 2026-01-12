@@ -74,3 +74,34 @@ a:hover {
     width: auto;
     border-radius: 4px;
 }
+
+@media (max-width: 768px) {
+    :host {
+        position: relative;
+        top: 0;
+        z-index: 100;
+    }
+
+    nav {
+        flex-direction: column;
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .center-links {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .center-links li {
+        margin: 5px 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .right-link {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}

@@ -263,6 +263,25 @@ h2 {
     box-shadow: 0 0 25px rgba(80, 118, 147, 0.6);
 }
 
+@media (max-width: 480px) {
+    .popup-content {
+        padding: 20px;
+        width: 95%;
+    }
+
+    .popup-content h2 {
+        font-size: 1.3rem;
+    }
+
+    .victory-icon {
+        font-size: 3rem;
+    }
+
+    .btn-popup {
+        width: 100%;
+    }
+}
+
 @keyframes bounceAndRotate {
 
     0%,
@@ -277,7 +296,6 @@ h2 {
 
 @media (max-width: 768px) {
 
-    /* Override Grid to Flexbox on Mobile to center orphans */
     #zone-zones-duree {
         display: flex;
         flex-wrap: wrap;

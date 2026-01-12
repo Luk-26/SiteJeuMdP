@@ -60,3 +60,25 @@
     color: rgba(255, 255, 255, 0.3);
     user-select: none;
 }
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .footer-brand {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .separator {
+        display: none;
+    }
+}

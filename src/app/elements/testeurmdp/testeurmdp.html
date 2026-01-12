@@ -1,21 +1,24 @@
 <div class="tester-container">
     <div class="input-group">
         <label for="mdp">Mot de passe à tester</label>
-        <input type="text" id="mdp" placeholder="Saisissez un mot de passe...">
+        <input type="text" id="mdp" placeholder="Saisissez un mot de passe..." [(ngModel)]="password"
+            (input)="checkPassword()">
     </div>
 
     <div class="strength-group">
         <label for="force">Force estimée</label>
-        <progress id="force" value="0" max="100"></progress>
+        <progress id="force" [value]="progressValue" max="100"></progress>
     </div>
 
     <div class="result-info">
         <p class="time-label">Temps estimé pour le cracker :</p>
-        <p><span id="temps">-</span></p>
+        <p><span id="temps">{{ crackTimeDisplay }}</span></p>
     </div>
 
     <div class="info-action">
-        <p class="info-text">Pour plus d'informations cliquez sur le bouton ci-dessous</p>
-        <button id="info" class="btn-primary">Plus d'informations</button>
+        <p class="info-text">Les mots de passe sont testé en local, ils ne soit ni envoyé si sauvegardé.</p>
+        <p class="info-text">Les mots de passe sont testé en utilisant la méthode zxcvbn.</p>
+        <a href="https://dropbox.tech/security/zxcvbn-realistic-password-strength-estimation" target="_blank" id="info"
+            class="btn-primary">Plus d'informations sur zxcvbn</a>
     </div>
 </div>

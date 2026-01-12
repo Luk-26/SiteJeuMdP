@@ -1,6 +1,6 @@
 .carte-mdp {
-    background-color: #507693;
-    border: 2px solid #507693;
+    background-color: var(--color-primary);
+    border: 2px solid var(--color-primary);
     border-radius: 12px;
     padding: 10px;
     width: 135px;
@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--box-shadow-card);
     cursor: grab;
     user-select: none;
     /* marge supprimée pour compter sur le gap flex */
@@ -18,7 +18,7 @@
 
 .carte-mdp:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--box-shadow-hover);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: grab;
 }
@@ -28,11 +28,11 @@
 }
 
 p {
-    font-family: 'Open Sans', sans-serif;
+    font-family: var(--font-family-body);
     font-size: 0.9rem;
     text-align: center;
     font-weight: 600;
-    color: #333333;
+    color: var(--color-text-main);
     /* Force wrapping for long passwords */
     word-break: break-word;
     overflow-wrap: break-word;

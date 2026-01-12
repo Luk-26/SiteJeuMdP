@@ -7,8 +7,8 @@
 }
 
 h1 {
-    font-family: 'Montserrat', sans-serif;
-    color: #507693;
+    font-family: var(--font-family-heading);
+    color: var(--color-primary);
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 40px;
@@ -34,11 +34,11 @@ h1 {
     /* Les empêcher de devenir trop fins */
     background-color: white;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--box-shadow-card);
     /* Ombre de la carte */
     padding: 30px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--color-border-light);
     /* Bordure subtile */
 }
 
@@ -46,12 +46,12 @@ h1 {
 #testeur-mdp:hover {
     transform: scale(1.005);
     /* Effet de levée douce */
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--box-shadow-hover);
 }
 
 h2 {
-    font-family: 'Montserrat', sans-serif;
-    color: #507693;
+    font-family: var(--font-family-heading);
+    color: var(--color-primary);
     font-size: 1.5rem;
     margin-top: 0;
     margin-bottom: 20px;
@@ -61,5 +61,5 @@ h2 {
     text-align: center;
     width: 100%;
     /* Ligne de décoration en dessous */
-    border-bottom: 2px solid #A8BDCE;
+    border-bottom: 2px solid var(--color-secondary);
 }

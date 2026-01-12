@@ -6,8 +6,8 @@
 }
 
 h1 {
-    font-family: 'Montserrat', sans-serif;
-    color: #507693;
+    font-family: var(--font-family-heading);
+    color: var(--color-primary);
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 40px;
@@ -17,7 +17,7 @@ h1 {
 section {
     background-color: white;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--box-shadow-card);
     padding: 30px;
     margin-bottom: 30px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -25,23 +25,23 @@ section {
 
 section:hover {
     transform: scale(1.02);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--box-shadow-hover);
 }
 
 h2 {
-    font-family: 'Montserrat', sans-serif;
-    color: #507693;
+    font-family: var(--font-family-heading);
+    color: var(--color-primary);
     font-size: 1.5rem;
     margin-top: 0;
     margin-bottom: 15px;
-    border-bottom: 2px solid #A8BDCE;
+    border-bottom: 2px solid var(--color-secondary);
     padding-bottom: 10px;
     display: inline-block;
 }
 
 p {
-    font-family: 'Open Sans', sans-serif;
-    color: #333333;
+    font-family: var(--font-family-body);
+    color: var(--color-text-main);
     line-height: 1.6;
     font-size: 1rem;
     margin-bottom: 0;
@@ -53,8 +53,8 @@ ul {
 }
 
 li {
-    font-family: 'Open Sans', sans-serif;
-    color: #333333;
+    font-family: var(--font-family-body);
+    color: var(--color-text-main);
     margin-bottom: 10px;
     list-style-type: none;
     position: relative;
@@ -63,21 +63,21 @@ li {
 
 li::before {
     content: "•";
-    color: #0056b3;
+    color: var(--color-accent);
     font-weight: bold;
     position: absolute;
     left: 0;
 }
 
 a {
-    color: #0056b3;
+    color: var(--color-accent);
     text-decoration: none;
     font-weight: 600;
     transition: color 0.2s;
 }
 
 a:hover {
-    color: #507693;
+    color: var(--color-primary);
     text-decoration: underline;
 }
 
@@ -90,10 +90,10 @@ a:hover {
 
 .btn-play {
     display: inline-block;
-    background-color: #507693;
-    color: #FFFFFF;
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
     padding: 15px 40px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-family-heading);
     font-size: 1.2rem;
     font-weight: 700;
     border-radius: 6px;
@@ -102,16 +102,16 @@ a:hover {
     text-decoration: none;
     /* Override default a tag style */
     transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow-card);
 }
 
 .btn-play:hover {
-    background-color: #0056b3;
+    background-color: var(--color-accent);
     /* Accent color */
     transform: scale(1.05);
     /* Slight zoom on hover */
     text-decoration: none;
     /* Ensure no underline */
-    color: #FFFFFF;
+    color: var(--color-text-inverse);
     /* Ensure text remains white */
 }

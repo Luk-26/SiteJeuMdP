@@ -22,6 +22,13 @@
     /* Blanc Pur */
     --bg-section-alt: #F4F6F8;
     /* Gris très léger pour alternance */
+    --color-primary-hover: #0080b3;
+    /* Bleu un peu plus vif pour le hover */
+    --color-border-light: #e0e0e0;
+    /* Gris clair pour les bordures */
+
+    --color-danger: #d9534f;
+    --color-danger-hover: #c9302c;
 
     /* --- TYPOGRAPHIE --- */
     /* Nécessite l'import Google Fonts correspondant */

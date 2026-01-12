@@ -11,16 +11,16 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #FFFFFF;
-    border: 2px solid #507693;
+    background-color: var(--color-text-inverse);
+    border: 2px solid var(--color-primary);
     border-radius: 12px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    font-family: 'Open Sans', sans-serif;
+    font-family: var(--font-family-body);
 }
 
 nav:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--box-shadow-hover);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -50,15 +50,15 @@ nav:hover {
 
 a {
     text-decoration: none;
-    color: #333333;
+    color: var(--color-text-main);
     font-weight: 500;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-family-heading);
     transition: color 0.3s ease;
 }
 
 a:hover {
     text-decoration: underline;
-    color: #0056b3;
+    color: var(--color-accent);
 }
 
 .right-link {
@@ -66,7 +66,7 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #0056b3;
+    color: var(--color-accent);
 }
 
 .link-icon {

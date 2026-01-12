@@ -37,8 +37,8 @@
     border-radius: 12px;
     padding: 20px;
     background-color: white;
-    border: 3px solid #507693;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
+    border: 3px solid var(--color-primary);
+    box-shadow: var(--box-shadow-card);
 }
 
 /* Zone des cartes mot de passe - Flexbox pour un réarrangement fluide */
@@ -66,12 +66,12 @@
 }
 
 #btn-jeu-mdp {
-    background-color: #507693;
-    color: #FFFFFF;
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
     padding: 15px 40px;
     border-radius: 6px;
     border: none;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-family-heading);
     font-weight: 700;
     cursor: pointer;
     font-size: 1.2rem;
@@ -79,21 +79,21 @@
 }
 
 #btn-jeu-mdp:hover {
-    background-color: #0080b3;
+    background-color: var(--color-primary-hover);
     transform: scale(1.05);
 }
 
 p {
-    font-family: 'Open Sans', sans-serif;
-    color: #333333;
+    font-family: var(--font-family-body);
+    color: var(--color-text-main);
     line-height: 1.6;
     font-size: 1rem;
     margin-bottom: 0;
 }
 
 h1 {
-    font-family: 'Montserrat', sans-serif;
-    color: #507693;
+    font-family: var(--font-family-heading);
+    color: var(--color-primary);
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 40px;
@@ -101,8 +101,8 @@ h1 {
 }
 
 h2 {
-    font-family: 'Montserrat', sans-serif;
-    color: #507693;
+    font-family: var(--font-family-heading);
+    color: var(--color-primary);
     font-size: 1.5rem;
     margin-top: 0;
     margin-bottom: 20px;
@@ -112,7 +112,7 @@ h2 {
     text-align: center;
     width: 100%;
     /* Decoration line underneath */
-    border-bottom: 2px solid #A8BDCE;
+    border-bottom: 2px solid var(--color-secondary);
 }
 
 /* Drop Zone Slot Styling */
@@ -189,25 +189,25 @@ h2 {
     max-width: 500px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    border: 3px solid #507693;
+    border: 3px solid var(--color-primary);
 }
 
 .popup-content h2 {
     margin-top: 0;
-    color: #507693;
-    border-bottom: 2px solid #A8BDCE;
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-secondary);
     padding-bottom: 10px;
 }
 
 .popup-content p {
     margin-bottom: 15px;
     font-size: 1rem;
-    color: #333;
+    color: var(--color-text-main);
 }
 
 .btn-popup {
-    background-color: #507693;
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
     border: none;
     padding: 10px 25px;
     border-radius: 6px;
@@ -215,12 +215,12 @@ h2 {
     cursor: pointer;
     margin-top: 15px;
     transition: background-color 0.2s;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-family-heading);
     font-weight: 700;
 }
 
 .btn-popup:hover {
-    background-color: #0080b3;
+    background-color: var(--color-primary-hover);
 }
 
 .popup-actions {
@@ -234,8 +234,8 @@ h2 {
 
 .btn-popup.secondary {
     background-color: white;
-    color: #507693;
-    border: 2px solid #507693;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
 }
 
 .btn-popup.secondary:hover {
@@ -243,11 +243,11 @@ h2 {
 }
 
 .btn-popup.destroy {
-    background-color: #d9534f;
+    background-color: var(--color-danger);
 }
 
 .btn-popup.destroy:hover {
-    background-color: #c9302c;
+    background-color: var(--color-danger-hover);
 }
 
 /* Victory Specifics */
@@ -259,7 +259,7 @@ h2 {
 }
 
 .popup-content.victory {
-    border-color: #507693;
+    border-color: var(--color-primary);
     box-shadow: 0 0 25px rgba(80, 118, 147, 0.6);
 }
 
@@ -292,13 +292,13 @@ h2 {
 
 a {
     text-decoration: none;
-    color: #507693;
+    color: var(--color-primary);
     font-weight: 500;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-family-heading);
     transition: color 0.3s ease;
 }
 
 a:hover {
     text-decoration: underline;
-    color: #0080b3;
+    color: var(--color-primary-hover);
 }

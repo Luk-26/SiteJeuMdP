@@ -1,10 +1,10 @@
 /* --- Conteneur principal compact --- */
 .site-footer {
-    background-color: #507693;
-    color: #FFFFFF;
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
     padding: 10px 0;
     margin-top: auto;
-    font-family: 'Open Sans', sans-serif;
+    font-family: var(--font-family-body);
     font-size: 0.85rem;
 }
 
@@ -26,11 +26,11 @@
 
 .brand-name {
     font-weight: 600;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-family-heading);
 }
 
 .copyright {
-    color: #A8BDCE;
+    color: var(--color-secondary);
     font-size: 0.8rem;
 }
 
@@ -45,14 +45,14 @@
 }
 
 .footer-links a {
-    color: #FFFFFF;
+    color: var(--color-text-inverse);
     text-decoration: none;
-    font-family: 'Open Sans', sans-serif;
+    font-family: var(--font-family-body);
     transition: color 0.2s ease;
 }
 
 .footer-links a:hover {
-    color: #A8BDCE;
+    color: var(--color-secondary);
     text-decoration: underline;
 }
 

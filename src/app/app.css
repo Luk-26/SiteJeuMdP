@@ -1,4 +1,4 @@
-/* --- GLOBAL LAYOUT FOR APP COMPONENT --- */
+/* --- MISE EN PAGE GLOBALE POUR LE COMPOSANT APP --- */
 :host {
     display: flex;
     flex-direction: column;
@@ -7,7 +7,7 @@
 
 main {
     flex: 1;
-    /* This pushes the footer to the bottom */
+    /* Pousse le pied de page vers le bas de l'écran */
     width: 100%;
 }
 

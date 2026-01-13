@@ -1,4 +1,6 @@
+<!-- Conteneur principal du générateur -->
 <div class="generator-container">
+    <!-- Affichage du résultat -->
     <div class="result-display">
         <p id="mdp">{{ generatedPassword }}</p>
         <button type="button" class="btn-copy" (click)="copierMdp()" title="Copier le mot de passe">
@@ -11,6 +13,7 @@
         </button>
     </div>
 
+    <!-- Curseur de longueur -->
     <div class="range-group">
         <div class="range-label">
             <label for="longueur-mdp">Longueur du mot de passe</label>
@@ -19,6 +22,7 @@
         <input type="range" min="4" max="128" id="longueur-mdp" [(ngModel)]="length">
     </div>
 
+    <!-- Options (Cases à cocher) -->
     <div class="options-grid">
         <div class="checkbox-group">
             <input type="checkbox" id="majuscule-mdp" [(ngModel)]="useUppercase">

@@ -29,7 +29,7 @@
     }
 }
 
-/* Common visual properties */
+/* Propriétés visuelles communes */
 #zone-cartes-mdp,
 #zone-zones-duree {
     flex: 1;
@@ -107,48 +107,48 @@ h2 {
     margin-top: 0;
     margin-bottom: 20px;
     padding-bottom: 10px;
-    /* Make title occupy full row in grid */
+    /* Prend toute la largeur de la grille */
     grid-column: 1 / -1;
     text-align: center;
     width: 100%;
-    /* Decoration line underneath */
+    /* Ligne de décoration en dessous */
     border-bottom: 2px solid var(--color-secondary);
 }
 
-/* Drop Zone Slot Styling */
+/* --- Emplacement de zone de dépôt --- */
 .drop-zone-slot {
     display: grid;
     grid-template-areas: "stack";
     place-items: center;
     width: 100%;
     height: 100%;
-    /* Ensure it behaves well as a drop target */
+    /* Assure un comportement correct pour le drag & drop */
     min-height: 100px;
 }
 
-/* Stack all children of the slot on top of each other */
+/* Empile tous les enfants les uns sur les autres */
 .drop-zone-slot>* {
     grid-area: stack;
 }
 
-/* Ensure dropped cards sit on top of the dashed zone */
+/* Assure que la carte déposée reste au-dessus de la zone en pointillés */
 .drop-zone-slot>app-cartemdp {
     z-index: 10;
     opacity: 0.69;
 }
 
-/* Drag Preview Styling - Element being dragged */
+/* --- Style de l'élément en cours de déplacement (Preview) --- */
 .cdk-drag-preview {
     box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
         0 8px 10px 1px rgba(0, 0, 0, 0.14),
         0 3px 14px 2px rgba(0, 0, 0, 0.12);
     opacity: 0.9;
-    /* Maintain dimensions if needed */
+    /* Maintient les dimensions */
     box-sizing: border-box;
     border-radius: 4px;
 }
 
-/* Ensure placeholder also sits on top during drag */
+/* Assure que le placeholder reste aussi au-dessus pendant le drag */
 .cdk-drag-placeholder {
     z-index: 5;
     opacity: 0.3;
@@ -157,7 +157,7 @@ h2 {
     border-radius: 4px;
 }
 
-/* Dragging state */
+/* État d'animation du déplacement */
 .cdk-drag-animating {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
@@ -167,7 +167,7 @@ h2 {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-/* POPUP STYLES */
+/* --- STYLES DES POPUPS --- */
 .popup-overlay {
     position: fixed;
     top: 0;
@@ -250,7 +250,7 @@ h2 {
     background-color: var(--color-danger-hover);
 }
 
-/* Victory Specifics */
+/* Spécificités de la victoire */
 .victory-icon {
     font-size: 4rem;
     margin-bottom: 10px;

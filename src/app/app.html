@@ -1,9 +1,12 @@
+<!-- Barre de navigation supérieure (Header) -->
 <app-navbar></app-navbar>
 
+<!-- Contenu principal chargé dynamiquement via le Router -->
 <main>
   <router-outlet></router-outlet>
 </main>
 
+<!-- Pied de page (Footer) -->
 <app-footer></app-footer>
 
 <button class="scroll-to-top" [class.show]="showScrollButton" (click)="scrollToTop()" aria-label="Remonter en haut">

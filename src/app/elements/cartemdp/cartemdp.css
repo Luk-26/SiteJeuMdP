@@ -33,7 +33,7 @@ p {
     text-align: center;
     font-weight: 600;
     color: var(--color-text-main);
-    /* Force wrapping for long passwords */
+    /* Coupe les mots longs pour éviter le débordement */
     word-break: break-word;
     overflow-wrap: break-word;
     width: 100%;

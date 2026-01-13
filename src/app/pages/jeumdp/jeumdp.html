@@ -14,60 +14,60 @@
 -->
 <div class="game-container" cdkDropListGroup>
 
-    <!-- 
+  <!-- 
       ZONE DE GAUCHE : LA PIOCHE
       C'est ici que les cartes "Mot de passe" apparaissent au début.
       [cdkDropListData]="cartes" lie cette zone à notre liste "cartes" dans le code.
       (cdkDropListDropped)="drop($event)" dit quoi faire quand on lâche une carte ici.
     -->
-    <div id="zone-cartes-mdp" class="zone" cdkDropList cdkDropListOrientation="mixed" [cdkDropListData]="cartes"
-        (cdkDropListDropped)="drop($event)">
+  <div id="zone-cartes-mdp" class="zone" cdkDropList cdkDropListOrientation="mixed" [cdkDropListData]="cartes"
+    (cdkDropListDropped)="drop($event)">
 
-        <h2>Cartes mot de passe</h2>
+    <h2>Cartes mot de passe</h2>
 
-        <!-- 
+    <!-- 
           BOUCLE (@for) : 
           Pour chaque carte dans notre liste "cartes", on affiche un composant <app-cartemdp>.
           C'est comme une photocopieuse qui crée autant de cartes qu'on en a besoin.
         -->
-        @for (carte of cartes; track carte) {
-        <!-- "cdkDrag" signifie que cet élément peut être attrapé et déplacé à la souris -->
-        <app-cartemdp [texte]="carte" cdkDrag></app-cartemdp>
-        }
-    </div>
+    @for (carte of cartes; track carte) {
+    <!-- "cdkDrag" signifie que cet élément peut être attrapé et déplacé à la souris -->
+    <app-cartemdp [texte]="carte" cdkDrag></app-cartemdp>
+    }
+  </div>
 
-    <!-- 
+  <!-- 
       ZONE DE DROITE : LES ZONES DE DURÉE
       C'est ici que le joueur doit déposer les cartes.
     -->
-    <div id="zone-zones-duree">
-        <h2>Zones de durées</h2>
+  <div id="zone-zones-duree">
+    <h2>Zones de durées</h2>
 
-        <!-- 
+    <!-- 
           BOUCLE (@for) : Pour chaque zone de durée définie dans le code...
         -->
-        @for (zone of zones; track zone.label) {
+    @for (zone of zones; track zone.label) {
 
-        <!-- 
+    <!-- 
           ZONE DE DÉPÔT INDIVIDUELLE
           Chaque durée a sa propre petite zone où on peut lâcher une carte.
           [cdkDropListData]="zone.items" lie cette zone spécifique au contenu de cette zone dans le code.
         -->
-        <div class="drop-zone-slot" cdkDropList [cdkDropListData]="zone.items" (cdkDropListDropped)="drop($event)">
+    <div class="drop-zone-slot" cdkDropList [cdkDropListData]="zone.items" (cdkDropListDropped)="drop($event)">
 
-            <!-- Affiche l'étiquette de la durée (ex: "1 jour", "3 mois") -->
-            <app-zoneduree [duree]="zone.label"></app-zoneduree>
+      <!-- Affiche l'étiquette de la durée (ex: "1 jour", "3 mois") -->
+      <app-zoneduree [duree]="zone.label"></app-zoneduree>
 
-            <!-- 
+      <!-- 
               Si une carte a été déposée ici, on l'affiche.
               Comme il ne peut y avoir qu'une carte par zone, cette boucle affichera 0 ou 1 carte.
             -->
-            @for (item of zone.items; track item) {
-            <app-cartemdp [texte]="item" cdkDrag></app-cartemdp>
-            }
-        </div>
-        }
+      @for (item of zone.items; track item) {
+      <app-cartemdp [texte]="item" cdkDrag></app-cartemdp>
+      }
     </div>
+    }
+  </div>
 </div>
 
 <!-- 
@@ -81,8 +81,8 @@
 -->
 <br>
 <p>
-    Les durées estimées sont déterminées par
-    <a href="https://www.hivesystems.com/blog/are-your-passwords-in-the-green" target="_blank">Hive Systems</a>.
+  Les durées estimées sont déterminées par
+  <a href="https://www.hivesystems.com/blog/are-your-passwords-in-the-green" target="_blank">Hive Systems</a>.
 </p>
 
 <!-- 
@@ -91,50 +91,50 @@
 -->
 @if (currentPopup !== 'NONE') {
 <div class="popup-overlay">
-    <!-- Le contenu de la fenêtre. On ajoute la classe "victory" si c'est une victoire pour faire joli. -->
-    <div class="popup-content" [ngClass]="{'victory': currentPopup === 'VICTORY'}">
+  <!-- Le contenu de la fenêtre. On ajoute la classe "victory" si c'est une victoire pour faire joli. -->
+  <div class="popup-content" [ngClass]="{'victory': currentPopup === 'VICTORY'}">
 
-        <!-- SCÉNARIO 1 : LES RÈGLES DU JEU (Affiché au début) -->
-        @if (currentPopup === 'RULES') {
-        <h2>Règles du jeu</h2>
-        <p>Bienvenue dans le jeu maux de passe !</p>
-        <p>Votre objectif est d'associer chaque mot de passe à sa durée de craquage estimée.</p>
-        <p>Glissez les cartes de gauche vers les zones correspondantes à droite.</p>
-        <button (click)="closePopup()" class="btn-popup">Commencer</button>
-        }
+    <!-- SCÉNARIO 1 : LES RÈGLES DU JEU (Affiché au début) -->
+    @if (currentPopup === 'RULES') {
+    <h2>Règles du jeu</h2>
+    <p>Bienvenue dans le jeu maux de passe !</p>
+    <p>Votre objectif est d'associer chaque mot de passe à sa durée de craquage estimée.</p>
+    <p>Glissez les cartes de gauche vers les zones correspondantes à droite.</p>
+    <button (click)="closePopup()" class="btn-popup">Commencer</button>
+    }
 
-        <!-- SCÉNARIO 2 : JEU INCOMPLET (Le joueur a cliqué sur Valider trop tôt) -->
-        @if (currentPopup === 'INCOMPLETE') {
-        <h2>Placement incomplet</h2>
-        <p>Vous n'avez pas placé toutes les cartes.</p>
-        <p>Veuillez associer chaque mot de passe à une durée avant de valider.</p>
-        <button (click)="closePopup()" class="btn-popup">Continuer</button>
-        }
+    <!-- SCÉNARIO 2 : JEU INCOMPLET (Le joueur a cliqué sur Valider trop tôt) -->
+    @if (currentPopup === 'INCOMPLETE') {
+    <h2>Placement incomplet</h2>
+    <p>Vous n'avez pas placé toutes les cartes.</p>
+    <p>Veuillez associer chaque mot de passe à une durée avant de valider.</p>
+    <button (click)="closePopup()" class="btn-popup">Continuer</button>
+    }
 
-        <!-- SCÉNARIO 3 : VICTOIRE (Tout est bon !) -->
-        @if (currentPopup === 'VICTORY') {
-        <div class="victory-icon">🎉</div>
-        <h2>Félicitations !</h2>
-        <p>Vous avez correctement classé tous les mots de passe !</p>
-        <div class="popup-actions">
-            <!-- Bouton pour rejouer -->
-            <button (click)="resetGame()" class="btn-popup">Nouvelle partie</button>
-            <!-- Bouton pour aller voir les outils -->
-            <button (click)="goToTools()" class="btn-popup secondary">Boîte à outils</button>
-        </div>
-        }
-
-        <!-- SCÉNARIO 4 : DÉFAITE (Il y a des erreurs) -->
-        @if (currentPopup === 'DEFEAT') {
-        <h2>Dommage...</h2>
-        <p>Il y a des erreurs dans votre classement.</p>
-        <p>Ne vous découragez pas, essayez encore !</p>
-        <div class="popup-actions hidden-on-mobile"> <!-- Stack buttons vertically -->
-            <button (click)="closePopup()" class="btn-popup">Continuer la partie</button>
-            <button (click)="resetGame()" class="btn-popup destroy">Nouvelle partie</button>
-        </div>
-        }
-
+    <!-- SCÉNARIO 3 : VICTOIRE (Tout est bon !) -->
+    @if (currentPopup === 'VICTORY') {
+    <div class="victory-icon">🎉</div>
+    <h2>Félicitations !</h2>
+    <p>Vous avez correctement classé tous les mots de passe !</p>
+    <div class="popup-actions">
+      <!-- Bouton pour rejouer -->
+      <button (click)="resetGame()" class="btn-popup">Nouvelle partie</button>
+      <!-- Bouton pour aller voir les outils -->
+      <button (click)="goToTools()" class="btn-popup secondary">Boîte à outils</button>
     </div>
+    }
+
+    <!-- SCÉNARIO 4 : DÉFAITE (Il y a des erreurs) -->
+    @if (currentPopup === 'DEFEAT') {
+    <h2>Dommage...</h2>
+    <p>Il y a des erreurs dans votre classement.</p>
+    <p>Ne vous découragez pas, essayez encore !</p>
+    <div class="popup-actions hidden-on-mobile"> <!-- Stack buttons vertically -->
+      <button (click)="closePopup()" class="btn-popup">Continuer la partie</button>
+      <button (click)="resetGame()" class="btn-popup destroy">Nouvelle partie</button>
+    </div>
+    }
+
+  </div>
 </div>
 }

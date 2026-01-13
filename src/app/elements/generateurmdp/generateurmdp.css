@@ -9,7 +9,7 @@
     height: 100%;
 }
 
-/* Result Display */
+/* --- Affichage du résultat --- */
 .result-display {
     background-color: var(--bg-section-alt);
     border: 2px dashed var(--color-secondary);
@@ -27,7 +27,7 @@
 
 .result-display p {
     font-family: var(--font-family-body);
-    /* Consolas for monospace look */
+    /* Police monospace pour le mot de passe */
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--color-text-main);
@@ -35,7 +35,7 @@
     word-break: break-all;
 }
 
-/* Bouton Copier */
+/* --- Bouton Copier --- */
 .btn-copy {
     background-color: white;
     border: 1px solid var(--color-primary);
@@ -47,7 +47,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
-    /* Pour qu'il ne prenne pas toute la hauteur si le flex stretch */
+    /* Centrage vertical si le flex stretch */
     align-self: center;
     white-space: nowrap;
 
@@ -66,7 +66,7 @@
     transform: scale(0.98);
 }
 
-/* Range Slider */
+/* --- Curseur (Range Slider) --- */
 .range-group {
     margin-bottom: 20px;
 }
@@ -97,7 +97,8 @@ input[type="range"]::-webkit-slider-thumb {
     border-radius: 50%;
     background: var(--color-primary);
     margin-top: -8px;
-    /* Correct thumb position for Chrome */
+    margin-top: -8px;
+    /* Position correcte du curseur pour Chrome */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     border: 2px solid var(--color-text-inverse);
 }
@@ -128,7 +129,7 @@ input[type="range"]::-moz-range-track {
     border-radius: 3px;
 }
 
-/* Options Grid (2x2) */
+/* --- Grille des options (2x2) --- */
 .options-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -156,10 +157,10 @@ input[type="checkbox"] {
     height: 16px;
 }
 
-/* Button */
+/* --- Bouton d'action --- */
 #generer-mdp {
     margin-top: auto;
-    /* Push to bottom */
+    /* Pousse en bas du conteneur */
     width: 100%;
     max-width: 200px;
     align-self: center;

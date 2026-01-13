@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+// --- Composant Générateur de Mot de Passe ---
+// Permet de générer des mots de passe sécurisés avec des critères configurables.
 @Component({
   selector: 'app-generateurmdp',
   imports: [FormsModule, CommonModule],
@@ -11,8 +13,8 @@ import { FormsModule } from '@angular/forms';
 export class Generateurmdp {
   constructor(private cdr: ChangeDetectorRef) { }
 
-  // --- Binding Properties (Liens avec le HTML) ---
-  length: number = 12;
+  // --- Propriétés liées au template (Data Binding) ---
+  length: number = 12; // Longueur par défaut
   useUppercase: boolean = true;
   useLowercase: boolean = true;
   useNumbers: boolean = true;
@@ -22,10 +24,10 @@ export class Generateurmdp {
   errorMessage: string = '';
   copyBtnText: string = 'Copier';
 
-  // --- Logic ---
+  // --- Logique de génération ---
 
   genererMdp() {
-    // 1. Validation
+    // 1. Validation des entrées utilisateur
     if (this.length < 4 || this.length > 128) {
       this.errorMessage = 'La longueur doit être comprise entre 4 et 128 caractères';
       return;
@@ -36,9 +38,9 @@ export class Generateurmdp {
       return;
     }
 
-    this.errorMessage = ''; // Reset error
+    this.errorMessage = ''; // Réinitialisation du message d'erreur
 
-    // 2. Préparation des caractères disponibles via Binding
+    // 2. Constitution de la liste des caractères éligibles
     const ensembles = {
       minuscule: 'abcdefghijklmnopqrstuvwxyz',
       majuscule: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
@@ -52,15 +54,15 @@ export class Generateurmdp {
     if (this.useNumbers) availableChars += ensembles.chiffre;
     if (this.useSpecial) availableChars += ensembles.special;
 
-    // 3. Génération sécurisée avec window.crypto
+    // 3. Génération cryptographiquement sécurisée
     let newPassword = '';
 
-    // On remplit un tableau d'octets aléatoires (plus sûr que Math.random)
+    // Utilisation de Uint32Array et window.crypto pour l'aléatoire (plus robuste que Math.random)
     const randomValues = new Uint32Array(this.length);
     window.crypto.getRandomValues(randomValues);
 
     for (let i = 0; i < this.length; i++) {
-      // On utilise le nombre aléatoire pour choisir un index dans availableChars
+      // Sélection d'un caractère aléatoire dans la liste disponible
       const randomIndex = randomValues[i] % availableChars.length;
       newPassword += availableChars.charAt(randomIndex);
     }
@@ -68,10 +70,11 @@ export class Generateurmdp {
     this.generatedPassword = newPassword;
   }
 
+  // Copie le mot de passe généré dans le presse-papier.
   copierMdp() {
     if (!this.generatedPassword || this.generatedPassword === 'Cliquer sur générer') return;
 
-    // Fonction interne pour gérer le succès visuel
+    // Gestion du retour visuel (changement du texte du bouton)
     const onSuccess = () => {
       this.copyBtnText = 'Copié !';
       this.cdr.detectChanges();
@@ -81,23 +84,23 @@ export class Generateurmdp {
       }, 2000);
     };
 
-    // Tentative 1 : API Clipboard moderne (nécessite souvent HTTPS)
+    // Tentative 1 : API Clipboard moderne (standard actuel)
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(this.generatedPassword)
         .then(onSuccess)
-        .catch(() => this.fallbackCopy(onSuccess)); // Si échec, on tente la méthode "bourrin"
+        .catch(() => this.fallbackCopy(onSuccess)); // Repli en cas d'erreur
     } else {
-      // Tentative 2 : Fallback direct si l'API n'existe pas
+      // Tentative 2 : Méthode de repli pour les navigateurs anciens ou contextes non sécurisés
       this.fallbackCopy(onSuccess);
     }
   }
 
-  // Méthode de secours pour copier (marche mieux sur mobile en HTTP/Dev)
+  // Méthode de secours utilisant un textarea temporaire (compatible mobile/HTTP).
   fallbackCopy(callback: () => void) {
     const textArea = document.createElement("textarea");
     textArea.value = this.generatedPassword;
 
-    // S'assurer que le textarea n'est pas visible mais fait partie du document
+    // Positionnement hors écran
     textArea.style.position = "fixed";
     textArea.style.left = "-9999px";
     textArea.style.top = "0";
@@ -107,11 +110,10 @@ export class Generateurmdp {
     textArea.select();
 
     try {
-      document.execCommand('copy');
+      document.execCommand('copy'); // Commande dépréciée mais largement supportée
       callback();
     } catch (err) {
       console.error('Impossible de copier', err);
-      // Fallback ultime : on pourrait afficher un prompt, mais c'est intrusif
     }
 
     document.body.removeChild(textArea);

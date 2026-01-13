@@ -16,7 +16,7 @@ h1 {
 }
 
 /* Utiliser un conteneur grille ou flex pour disposer les deux outils côte à côte */
-:host div div {
+.tools-container {
     display: flex;
     flex-wrap: wrap;
     /* Retour à la ligne sur les écrans plus petits */

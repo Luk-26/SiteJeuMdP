@@ -9,7 +9,7 @@
     height: 100%;
 }
 
-/* Input Group */
+/* --- Groupe de saisie (Input) --- */
 .input-group {
     display: flex;
     flex-direction: column;
@@ -39,7 +39,7 @@
     border-color: var(--color-primary);
 }
 
-/* Strength Bar */
+/* --- Barre de force (Strength Bar) --- */
 .strength-group {
     display: flex;
     flex-direction: column;
@@ -58,26 +58,26 @@ progress {
     width: 100%;
     height: 20px;
     border-radius: 10px;
-    /* Rounded corners */
+    /* Coins arrondis */
     overflow: hidden;
-    /* Force clipping */
+    /* Force le clipping */
     appearance: none;
-    /* Reset native styles */
+    /* Réinitialisation du style natif */
     -webkit-appearance: none;
     border: none;
     background-color: #eee;
 }
 
-/* Styling the background of the bar */
+/* Style du fond de la barre */
 progress::-webkit-progress-bar {
     background-color: #eee;
     border-radius: 10px;
 }
 
-/* Styling the value curve (the fill) */
+/* Style de la valeur (remplissage) */
 progress::-webkit-progress-value {
     background-color: var(--color-primary);
-    /* Default primary color */
+    /* Couleur primaire par défaut */
     border-radius: 10px;
     transition: width 0.3s ease;
 }
@@ -87,7 +87,7 @@ progress::-moz-progress-bar {
     border-radius: 10px;
 }
 
-/* Result Info */
+/* --- Informations de résultat --- */
 .result-info {
     background-color: var(--bg-section-alt);
     border: 2px dashed var(--color-secondary);
@@ -112,7 +112,7 @@ progress::-moz-progress-bar {
     color: var(--color-text-main);
 }
 
-/* Info Action (Button area) */
+/* --- Zone d'actions et d'infos --- */
 .info-action {
     margin-top: 25px;
     text-align: center;

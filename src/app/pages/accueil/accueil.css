@@ -21,6 +21,14 @@ section {
     padding: 30px;
     margin-bottom: 30px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    /* Needed for app-lectureaudio positioning */
+}
+
+app-lectureaudio {
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
 section:hover {

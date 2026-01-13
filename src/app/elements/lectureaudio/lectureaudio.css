@@ -1,0 +1,52 @@
+.btn-lectureaudio {
+    /* Design de base */
+    background-color: #f4f6f8;
+    /* Fond gris clair discret */
+    color: #507693;
+    /* Texte Bleu Ardoise (Charte) */
+    border: 2px solid #507693;
+
+    padding: 8px 16px;
+    border-radius: 20px;
+    /* Forme de pilule */
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    /* Espace entre l'icône et le texte */
+    transition: all 0.3s ease;
+}
+
+/* Au survol */
+.btn-lectureaudio:hover {
+    background-color: #e3e9ef;
+}
+
+/* État ACTIF (quand ça parle) */
+.btn-lectureaudio.actif {
+    background-color: #507693;
+    /* Le fond devient bleu */
+    color: white;
+    /* Le texte devient blanc */
+    animation: pulsation 2s infinite;
+    /* Petit effet visuel sympa */
+}
+
+/* Animation optionnelle pour montrer que ça parle */
+@keyframes pulsation {
+    0% {
+        box-shadow: 0 0 0 0 rgba(80, 118, 147, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(80, 118, 147, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(80, 118, 147, 0);
+    }
+}

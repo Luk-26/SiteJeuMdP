@@ -69,7 +69,7 @@ export class Jeumdp implements OnInit {
   // --- Paramètres du jeu ---
 
   // Nombre de cartes et d'emplacements à générer pour une partie et de la difficulté
-  difficulty: 'easy' | 'medium' | 'hard' = 'medium';
+  difficulty: 'veryeasy' | 'easy' | 'medium' | 'hard' | 'veryhard' = 'medium';
   GAME_SIZE = 9;
 
   // --- Logique du jeu ---
@@ -152,9 +152,12 @@ export class Jeumdp implements OnInit {
 
   // Gestion de la difficulté :
   setDifficulty(difficulty: string) {
-    this.difficulty = difficulty as 'easy' | 'medium' | 'hard';
+    this.difficulty = difficulty as 'veryeasy' | 'easy' | 'medium' | 'hard' | 'veryhard';
 
     switch (this.difficulty) {
+      case 'veryeasy':
+        this.GAME_SIZE = 3;
+        break;
       case 'easy':
         this.GAME_SIZE = 6;
         break;
@@ -163,6 +166,9 @@ export class Jeumdp implements OnInit {
         break;
       case 'hard':
         this.GAME_SIZE = 12;
+        break;
+      case 'veryhard':
+        this.GAME_SIZE = 15;
         break;
     }
 

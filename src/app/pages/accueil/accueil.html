@@ -14,12 +14,11 @@
 <section>
     <h2>Création et Gestion de Mots de Passe</h2>
     <p>{{ texteMotsDePasse }}</p>
-    <app-lectureaudio [texte]="texteMotsDePasse"></app-lectureaudio>
+    <app-lectureaudio [texte]="texteMotsDePasseAudio"></app-lectureaudio>
     <ul>
-        <li>Utilisez au moins 12 caractères mêlant majuscules, minuscules, chiffres et symboles.</li>
-        <li>Évitez les informations personnelles (dates de naissance, noms).</li>
-        <li>Utilisez un mot de passe unique pour chaque service.</li>
-        <li>Utilisez un gestionnaire de mots de passe pour stocker vos identifiants en toute sécurité.</li>
+        @for (conseil of conseilsMotsDePasse; track conseil) {
+        <li>{{ conseil }}</li>
+        }
     </ul>
 </section>
 

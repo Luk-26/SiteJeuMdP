@@ -17,5 +17,16 @@ export class Accueil {
 
   texteMotsDePasse: string = "Un mot de passe robuste est votre première ligne de défense. Voici quelques bonnes pratiques :";
 
+  conseilsMotsDePasse: string[] = [
+    "Utilisez au moins 12 caractères mêlant majuscules, minuscules, chiffres et symboles.",
+    "Évitez les informations personnelles (dates de naissance, noms).",
+    "Utilisez un mot de passe unique pour chaque service.",
+    "Utilisez un gestionnaire de mots de passe pour stocker vos identifiants en toute sécurité."
+  ];
+
+  get texteMotsDePasseAudio(): string {
+    return this.texteMotsDePasse + " " + this.conseilsMotsDePasse.join(" ");
+  }
+
   texteRessources: string = "Pour approfondir vos connaissances, consultez les sites officiels suivants :";
 }

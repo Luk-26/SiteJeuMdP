@@ -1,4 +1,4 @@
-import { Component, Input, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Input, Inject, PLATFORM_ID, NgZone, ChangeDetectorRef } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
@@ -14,7 +14,11 @@ export class Lectureaudio {
 
   isBrowser: boolean;
 
-  constructor(@Inject(PLATFORM_ID) platformId: Object) {
+  constructor(
+    @Inject(PLATFORM_ID) platformId: Object,
+    private ngZone: NgZone,
+    private cdr: ChangeDetectorRef
+  ) {
     this.isBrowser = isPlatformBrowser(platformId);
     if (this.isBrowser) {
       if (!('speechSynthesis' in window)) {
@@ -34,14 +38,25 @@ export class Lectureaudio {
   demarrerLecture() {
     if (!this.isBrowser) return;
 
+    // Annuler toute lecture en cour (global) pour éviter la queue
+    window.speechSynthesis.cancel();
+
     this.synthese = new SpeechSynthesisUtterance(this.texte);
     this.synthese.lang = 'fr-FR';
     this.synthese.rate = 1;
     this.synthese.pitch = 1;
     this.synthese.volume = 1;
-    this.synthese.onend = () => {
-      this.lecture = false;
+
+    const cleanup = () => {
+      this.ngZone.run(() => {
+        this.lecture = false;
+        this.cdr.detectChanges();
+      });
     };
+
+    this.synthese.addEventListener('end', cleanup);
+    this.synthese.addEventListener('error', cleanup);
+
     window.speechSynthesis.speak(this.synthese);
     this.lecture = true;
   }
@@ -51,6 +66,7 @@ export class Lectureaudio {
 
     window.speechSynthesis.cancel();
     this.lecture = false;
+    this.cdr.detectChanges();
   }
 
   ngOnDestroy() {

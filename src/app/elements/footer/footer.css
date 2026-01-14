@@ -44,14 +44,14 @@
     padding: 0;
 }
 
-.footer-links a {
+a {
     color: var(--color-text-inverse);
     text-decoration: none;
     font-family: var(--font-family-body);
     transition: color 0.2s ease;
 }
 
-.footer-links a:hover {
+a:hover {
     color: var(--color-secondary);
     text-decoration: underline;
 }

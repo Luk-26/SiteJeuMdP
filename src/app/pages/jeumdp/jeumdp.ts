@@ -66,6 +66,12 @@ export class Jeumdp implements OnInit {
   // Zones de durée où les cartes doivent être déposées (cibles).
   zones: DurationZone[] = [];
 
+  // --- Paramètres du jeu ---
+
+  // Nombre de cartes et d'emplacements à générer pour une partie et de la difficulté
+  difficulty: 'easy' | 'medium' | 'hard' = 'medium';
+  GAME_SIZE = 9;
+
   // --- Logique du jeu ---
 
   // Prépare et lance un nouveau niveau.
@@ -116,13 +122,13 @@ export class Jeumdp implements OnInit {
 
     const uniqueDurations = Array.from(durationMap.keys());
 
-    if (uniqueDurations.length < 9) {
+    if (uniqueDurations.length < this.GAME_SIZE) {
       console.warn('Attention : Pas assez de durées uniques dans le CSV pour remplir le plateau.');
     }
 
-    // Sélection aléatoire de 9 durées différentes.
+    // Sélection aléatoire de cartes (selon GAME_SIZE).
     this.shuffle(uniqueDurations);
-    const selectedDurations = uniqueDurations.slice(0, 9);
+    const selectedDurations = uniqueDurations.slice(0, this.GAME_SIZE);
 
     // 3. Initialisation du plateau.
     this.solutions = {};
@@ -142,6 +148,25 @@ export class Jeumdp implements OnInit {
     // 4. Finalisation : mélange des cartes et des zones pour le joueur.
     this.shuffle(this.cartes);
     this.shuffle(this.zones);
+  }
+
+  // Gestion de la difficulté :
+  setDifficulty(difficulty: string) {
+    this.difficulty = difficulty as 'easy' | 'medium' | 'hard';
+
+    switch (this.difficulty) {
+      case 'easy':
+        this.GAME_SIZE = 6;
+        break;
+      case 'medium':
+        this.GAME_SIZE = 9;
+        break;
+      case 'hard':
+        this.GAME_SIZE = 12;
+        break;
+    }
+
+    this.startNewLevel();
   }
 
   // --- Gestion de l'interface ---

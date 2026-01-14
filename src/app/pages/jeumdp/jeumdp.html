@@ -6,6 +6,17 @@
 <!-- Titre principal de la page -->
 <h1>Jeu maux de passe</h1>
 
+<!-- Zone de contrôle de la difficulté (facile/moyen/difficile) -->
+<div id="zone-difficulte">
+  <h2>Difficulté</h2>
+  <button class="bouton-difficulty" [class.active]="difficulty === 'easy'"
+    (click)="setDifficulty('easy')">Facile</button>
+  <button class="bouton-difficulty" [class.active]="difficulty === 'medium'"
+    (click)="setDifficulty('medium')">Moyen</button>
+  <button class="bouton-difficulty" [class.active]="difficulty === 'hard'"
+    (click)="setDifficulty('hard')">Difficile</button>
+</div>
+
 <!-- 
   CONTENEUR DU JEU 
   C'est la boîte principale qui contient les cartes et les zones.

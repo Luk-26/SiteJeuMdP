@@ -34,6 +34,19 @@
     font-size: 0.8rem;
 }
 
+/* --- Centre : Cyberskills --- */
+.footer-cyberskills {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-cyberskills img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
 /* --- Droite : Liens --- */
 .footer-links {
     display: flex;

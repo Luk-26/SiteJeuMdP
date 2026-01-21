@@ -66,6 +66,11 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 10px;
+    color: var(--color-text-main);
+}
+
+.right-link:hover {
+    text-decoration: underline;
     color: var(--color-accent);
 }
 

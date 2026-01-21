@@ -2,7 +2,12 @@
 <section>
     <h2>Présentation</h2>
     <p>{{ textePresentation }}</p>
-    <app-lectureaudio [texte]="textePresentation"></app-lectureaudio>
+    <app-lectureaudio [texte]="textePresentationAudio"></app-lectureaudio>
+    <ul>
+        @for (mission of missionsPresentation; track mission) {
+        <li>{{ mission }}</li>
+        }
+    </ul>
 </section>
 
 <section>
@@ -27,15 +32,24 @@
     <p>{{ texteRessources }}</p>
     <app-lectureaudio [texte]="texteRessources"></app-lectureaudio>
     <ul>
-        <li><a href="https://www.cybermalveillance.gouv.fr/" target="_blank"
-                rel="noopener noreferrer">Cybermalveillance.gouv.fr</a></li>
+        <li><a href="https://www.cybermalveillance.gouv.fr/" target="_blank" rel="noopener noreferrer">Cybermalveillance
+                - Support de l'État pour la cybermalveillance</a></li>
         <li><a href="https://www.ssi.gouv.fr/" target="_blank" rel="noopener noreferrer">ANSSI - Agence nationale de la
                 sécurité des systèmes d'information</a></li>
         <li><a href="https://www.cnil.fr/" target="_blank" rel="noopener noreferrer">CNIL - Maîtriser ses données
                 personnelles</a></li>
+        <li><a href="https://bitwarden.com/fr-fr/" target="_blank" rel="noopener noreferrer">Bitwarden - Gestionnaire de
+                mots de passe</a></li>
+        <li><a href="https://keepass.info/" target="_blank" rel="noopener noreferrer">Keepass - Gestionnaire de mots de
+                passe</a></li>
+        <li><a href="https://www.univ-grenoble-alpes.fr/universite/ambition-et-strategie/france-2030/cma/cyberskills-uga-1426770.kjsp"
+                target="_blank" rel="noopener noreferrer">CyberSkills@UGA - Projet France 2030</a></li>
     </ul>
 </section>
 
 <div class="action-button-container">
-    <a routerLink="/jeu-mdp" class="btn-play">Jouer à maux de passe !</a>
+    <a routerLink="/jeu-mdp" class="btn">Jouer à maux de passe !</a>
+    <a routerLink="/boite-a-outils" class="btn">Ouvrir la boite à outils !</a>
 </div>
+<p id="commentaireAideEtat">Ce travail a bénéficié d'une aide de l'Etat gérée par l’Agence Nationale de la Recherche au
+    titre de France 2030 portant la référence ANR-22-CMAS-0021</p>

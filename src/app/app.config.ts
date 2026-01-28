@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
@@ -9,8 +9,11 @@ export const appConfig: ApplicationConfig = {
   providers: [
     // Gestionnaire d'erreurs global
     provideBrowserGlobalErrorListeners(),
-    // Intégration du système de routage
-    provideRouter(routes),
+    // Intégration du système de routage avec gestion du scroll et des ancres
+    provideRouter(routes, withInMemoryScrolling({
+      anchorScrolling: 'enabled',
+      scrollPositionRestoration: 'enabled'
+    })),
     // Activation de l'hydratation client pour le rendu côté serveur (SSR)
     provideClientHydration(withEventReplay())
   ]

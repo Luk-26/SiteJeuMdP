@@ -2,8 +2,14 @@
 <div class="tester-container">
     <div class="input-group">
         <label for="mdp">Mot de passe à tester</label>
-        <input type="text" id="mdp" placeholder="Saisissez un mot de passe..." [(ngModel)]="password"
-            (input)="checkPassword()">
+        <div class="input-wrapper">
+            <input [type]="isVisible ? 'text' : 'password'" id="mdp" placeholder="Saisissez un mot de passe..."
+                [(ngModel)]="password" (input)="checkPassword()">
+            <button class="visibility-btn" (click)="toggleVisibility()" type="button"
+                [attr.aria-label]="isVisible ? 'Masquer le mot de passe' : 'Afficher le mot de passe'">
+                {{ isVisible ? '&#65039;&#128065;' : '&#128274;' }}
+            </button>
+        </div>
     </div>
 
     <div class="strength-group">
@@ -21,5 +27,8 @@
         <p class="info-text">Les mots de passe sont testés en utilisant la méthode zxcvbn.</p>
         <a href="https://dropbox.tech/security/zxcvbn-realistic-password-strength-estimation" target="_blank"
             rel="noopener noreferrer" id="info" class="btn-primary">Plus d'informations sur zxcvbn</a>
+        <br>
+        <a routerLink="/" fragment="craquage" class="btn-link">La méthode utilisée est un mélange complexe comprenant
+            principalement le brut force et l'attaque par dictionnaire.</a>
     </div>
 </div>

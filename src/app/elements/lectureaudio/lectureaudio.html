@@ -1,8 +1,8 @@
 <button (click)="lectureAudio()" [title]="lecture ? 'arrêter la lecture' : 'écouter le texte'" class="btn-lectureaudio"
     [class.actif]="lecture">
     @if (!lecture) {
-    <span>&#9654;</span>
-    } @else {
     <span>&#128266;</span>
+    } @else {
+    <span>&#9209;</span>
     }
 </button>

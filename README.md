@@ -46,4 +46,4 @@ Ce site web a pour vocation de sensibiliser les utilisateurs aux bonnes pratique
 *   **Robin FECHOZ** - *Ingénierie Pédagogique*
 
 ### Remerciements
-*   [CMQ IED AURA](https://cmqiedaura.fr)
+*   [[CMQ IED_AURA]](https://cmqiedaura.fr)

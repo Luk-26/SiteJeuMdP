@@ -156,6 +156,21 @@ h2 {
     border-bottom: 2px solid var(--color-secondary);
 }
 
+.link-craquage {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+    font-family: var(--font-family-body);
+}
+
+.link-craquage:hover {
+    color: var(--color-primary-hover);
+}
+
 /* --- Emplacement de zone de dépôt --- */
 .drop-zone-slot {
     display: grid;
@@ -353,3 +368,244 @@ a:hover {
     text-decoration: underline;
     color: var(--color-primary-hover);
 }
+
+/* --- TABLEAU HIVE 2025 --- */
+.hive-data-section {
+    margin-top: 40px;
+    width: 100%;
+    max-width: 1200px;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--box-shadow-card);
+    border: 3px solid var(--color-primary);
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.hive-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-family: var(--font-family-body);
+}
+
+.hive-table th,
+.hive-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 0.95rem;
+}
+
+.hive-table th {
+    background-color: var(--color-primary);
+    color: white;
+    font-family: var(--font-family-heading);
+    font-weight: 600;
+}
+
+.hive-table td.length-cell {
+    font-weight: bold;
+    background-color: #f9f9f9;
+}
+
+/* Couleurs de durée (Dégradé Rouge -> Vert) */
+.duration-red {
+    background-color: #ffcccc;
+    color: #b30000;
+    font-weight: 600;
+}
+
+.duration-orange {
+    background-color: #ffdcb3;
+    /* Plus saturé */
+    color: #b35900;
+    /* Plus foncé pour le contraste */
+    font-weight: 600;
+}
+
+.duration-yellow {
+    background-color: #fff3cd;
+    /* Jaune plus chaud (style warning bootstrap) */
+    color: #856404;
+    /* Marron/Or foncé */
+    font-weight: 600;
+}
+
+.duration-green {
+    background-color: #ccffcc;
+    color: #006600;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .hive-table {
+        font-size: 0.8rem;
+    }
+
+    .hive-table th,
+    .hive-table td {
+        padding: 8px 4px;
+    }
+}
+/* --- LISTE DES SOLUTIONS (VICTOIRE) --- */
+.victory-list {
+    text-align: left;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #e0e0e0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.victory-list h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: var(--color-primary);
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.victory-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.victory-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    border-bottom: 1px dashed #d0d0d0;
+    font-size: 0.95rem;
+}
+
+.victory-list li:last-child {
+    border-bottom: none;
+}
+
+.victory-pwd {
+    font-weight: bold;
+    color: var(--color-text-main);
+    background-color: #eef2f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.victory-separator {
+    color: #999;
+    font-size: 0.8rem;
+    margin: 0 10px;
+}
+
+.victory-duration {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+/* Scrollbar personnalisée pour la liste */
+.victory-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.victory-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.victory-list::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+}
+
+.victory-list::-webkit-scrollbar-thumb:hover {
+    background: #bbb;
+}
+
+
+/* --- CONSEILS EN CAS D'ERREUR --- */
+.error-conseils {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    text-align: left;
+}
+
+.error-conseils h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: #856404;
+    border-bottom: 1px solid #fcebb1;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.error-conseils ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.error-conseils li {
+    font-size: 0.95rem;
+    color: #856404;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.error-conseils li:last-child {
+    margin-bottom: 0;
+}
+
+
+/* --- COULEURS HIVE SYSTEMS 2025 --- */
+/* Violet : Instantané */
+.duration-purple {
+    background-color: #d1c4e9; /* Violet clair */
+    color: #4a148c; /* Violet foncé */
+    font-weight: 700;
+}
+
+/* Rouge : Minutes / Heures */
+.duration-red {
+    background-color: #ffcdd2; /* Rouge clair */
+    color: #b71c1c; /* Rouge foncé */
+    font-weight: 700;
+}
+
+/* Orange : Jours / Semaines / Mois */
+.duration-orange {
+    background-color: #ffe0b2; /* Orange clair */
+    color: #e65100; /* Orange foncé */
+    font-weight: 700;
+}
+
+/* Jaune : Années */
+.duration-yellow {
+    background-color: #fff9c4; /* Jaune clair */
+    color: #f57f17; /* Jaune foncé/moutarde */
+    font-weight: 700;
+}
+
+/* Vert : Siècles et plus */
+.duration-green {
+    background-color: #c8e6c9; /* Vert clair */
+    color: #1b5e20; /* Vert foncé */
+    font-weight: 700;
+}
+

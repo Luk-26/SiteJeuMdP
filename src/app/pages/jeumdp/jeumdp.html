@@ -100,6 +100,35 @@
   <a href="https://www.hivesystems.com/blog/are-your-passwords-in-the-green" target="_blank"
     rel="noopener noreferrer">Hive Systems</a>.
 </p>
+<a routerLink="/" fragment="craquage" class="link-craquage">La méthode utilisée est le brute force.</a>
+
+<!-- TABLEAU HIVE 2025 -->
+<div class="hive-data-section">
+  <h3>Tableau de référence - Hive Systems 2025</h3>
+  <div class="table-responsive">
+    <table class="hive-table">
+      <thead>
+        <tr>
+          @for (header of hiveHeaders; track header) {
+          <th>{{ header }}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of hiveData; track row) {
+        <tr>
+          @for (cell of row; track $index; let i = $index) {
+          <!-- La première colonne (longueur) n'a pas de couleur de durée -->
+          <td [class]="i === 0 ? 'length-cell' : getDurationClass(cell)">
+            {{ cell }}
+          </td>
+          }
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <!-- 
   GESTION DES POPUPS (Fenêtres surgissantes)
@@ -132,6 +161,19 @@
     <div class="victory-icon">&#127881;</div>
     <h2>Félicitations !</h2>
     <p>Vous avez correctement classé tous les mots de passe !</p>
+
+    <div class="victory-list container-fluid">
+      <h3>Solutions de cette partie :</h3>
+      <ul>
+        @for (item of sortedSolutions; track item.pwd) {
+        <li>
+          <span class="victory-pwd">{{ item.pwd }}</span>
+          <span class="victory-separator">&#10140;</span>
+          <span class="victory-duration">{{ item.duration }}</span>
+        </li>
+        }
+      </ul>
+    </div>
     <div class="popup-actions">
       <!-- Bouton pour rejouer -->
       <button (click)="resetGame()" class="btn-popup">Nouvelle partie</button>
@@ -145,9 +187,16 @@
     <h2>Dommage...</h2>
     <p>Il y a des erreurs dans votre classement.</p>
     <p>Ne vous découragez pas, essayez encore !</p>
+    <div class="error-conseils">
+      <h3>Le sais-tu ?</h3>
+      <ul>
+        @for (tip of displayedTips; track tip) {
+        <li>&#128161; {{ tip }}</li>
+        }
+      </ul>
+    </div>
     <div class="popup-actions hidden-on-mobile"> <!-- Stack buttons vertically -->
       <button (click)="closePopup()" class="btn-popup">Continuer la partie</button>
-      <button (click)="resetGame()" class="btn-popup destroy">Nouvelle partie</button>
     </div>
     }
 

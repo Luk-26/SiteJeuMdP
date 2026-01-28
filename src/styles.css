@@ -1,6 +1,11 @@
 /* Vous pouvez ajouter des styles globaux à ce fichier, et aussi importer d'autres fichiers de style */
 /* --- MISE EN PAGE GLOBALE --- */
-/* Variables globales et styles */
+html,
+body {
+    scroll-padding-top: 150px;
+    scroll-behavior: smooth;
+    margin: 0;
+}
 
 :root {
     /* --- PALETTE DE COULEURS --- */

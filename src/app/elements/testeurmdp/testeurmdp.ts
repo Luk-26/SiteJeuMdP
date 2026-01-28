@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import zxcvbn from 'zxcvbn';
 
 // --- Composant Testeur de Mot de Passe ---
 // Permet à l'utilisateur de saisir un mot de passe et d'obtenir une estimation de sa sécurité.
 @Component({
   selector: 'app-testeurmdp',
-  imports: [FormsModule],
+  imports: [FormsModule, RouterModule],
   templateUrl: './testeurmdp.html',
   styleUrl: './testeurmdp.css',
 })
 export class Testeurmdp {
   password: string = '';
+  isVisible: boolean = false; // Pour basculer l'affichage du mot de passe
   score: number = 0; // Score de 0 à 4 renvoyé par zxcvbn
   progressValue: number = 0; // Pourcentage pour la barre de progression
   crackTimeDisplay: string = '-'; // Texte affiché pour le temps de craquage
@@ -42,6 +44,11 @@ export class Testeurmdp {
     this.crackTimeDisplay = this.formatDuration(seconds);
   }
 
+  // Bascule l'état de visibilité du mot de passe
+  toggleVisibility() {
+    this.isVisible = !this.isVisible;
+  }
+
   // Convertit une durée en secondes en un texte lisible (ex: "3 jours", "2 millions d'années").
   // Gère les unités de l'instantané jusqu'aux billions d'années.
   private formatDuration(seconds: number): string {
@@ -63,7 +70,7 @@ export class Testeurmdp {
     const years = days / 365.25;
 
     if (years < 1000000) {
-      return `${new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(years)} années`;
+      return `${new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(years)} ans`;
     }
 
     if (years < 1000000000) {

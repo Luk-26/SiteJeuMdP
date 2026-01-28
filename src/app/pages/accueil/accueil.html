@@ -28,6 +28,19 @@
 </section>
 
 <section>
+    <div id="craquage" class="anchor-offset"></div>
+    <h2>Les méthodes de craquage de mots de passe</h2>
+    <p>{{ texteCraquageMotsDePasse }}</p>
+    <app-lectureaudio [texte]="texteCraquageMotsDePasseAudio"></app-lectureaudio>
+    <ul>
+        @for (methode of methodesCraquageMotsDePasse; track methode) {
+        <li>{{ methode }}</li>
+        }
+    </ul>
+    <p>{{ texteCraquageMotsDePasseFin }}</p>
+</section>
+
+<section>
     <h2>Ressources Externes</h2>
     <p>{{ texteRessources }}</p>
     <app-lectureaudio [texte]="texteRessources"></app-lectureaudio>

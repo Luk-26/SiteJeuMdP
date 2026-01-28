@@ -38,7 +38,7 @@ export class Lectureaudio {
   demarrerLecture() {
     if (!this.isBrowser) return;
 
-    // Annuler toute lecture en cour (global) pour éviter la queue
+    // Annuler toute lecture en cours (global) pour éviter la queue
     window.speechSynthesis.cancel();
 
     this.synthese = new SpeechSynthesisUtterance(this.texte);
@@ -47,15 +47,21 @@ export class Lectureaudio {
     this.synthese.pitch = 1;
     this.synthese.volume = 1;
 
-    const cleanup = () => {
+    // Utilisation des propriétés onend/onerror pour pouvoir les nettoyer facilement
+    this.synthese.onend = () => {
       this.ngZone.run(() => {
         this.lecture = false;
         this.cdr.detectChanges();
       });
     };
 
-    this.synthese.addEventListener('end', cleanup);
-    this.synthese.addEventListener('error', cleanup);
+    this.synthese.onerror = (event) => {
+      console.error('Erreur synthèse vocale', event);
+      this.ngZone.run(() => {
+        this.lecture = false;
+        this.cdr.detectChanges();
+      });
+    };
 
     window.speechSynthesis.speak(this.synthese);
     this.lecture = true;
@@ -63,6 +69,12 @@ export class Lectureaudio {
 
   arreterLecture() {
     if (!this.isBrowser) return;
+
+    // Nettoyage des événements pour éviter les appels parasites
+    if (this.synthese) {
+      this.synthese.onend = null;
+      this.synthese.onerror = null;
+    }
 
     window.speechSynthesis.cancel();
     this.lecture = false;

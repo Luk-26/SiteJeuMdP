@@ -1,4 +1,4 @@
-Nombre de caractères,Chiffres uniquement,Lettres minuscules,Lettres majuscules et minuscules,"Chiffres, majuscules et minuscules","Chiffres, majuscules, minuscules et symboles"
+export const HIVE_TABLE_CONTENT = `Nombre de caractères,Chiffres uniquement,Lettres minuscules,Lettres majuscules et minuscules,"Chiffres, majuscules et minuscules","Chiffres, majuscules, minuscules et symboles"
 4,Instantané,Instantané,Instantané,Instantané,Instantané
 5,Instantané,Instantané,57 minutes,2 heures,4 heures
 6,Instantané,46 minutes,2 jours,6 jours,2 semaines
@@ -13,4 +13,4 @@ Nombre de caractères,Chiffres uniquement,Lettres minuscules,Lettres majuscules 
 15,284 ans,477 Millions d'années,15 Billions d'années,218 Billions d'années,1 Billiard d'années
 16,2 mille ans,12 Milliards d'années,812 Billions d'années,13 Billiards d'années,94 Billiards d'années
 17,28 mille ans,322 Milliards d'années,42 Billiards d'années,840 Billiards d'années,6 Trillions d'années
-18,284 mille ans,8 Billions d'années,2 Trillions d'années,52 Trillions d'années,463 Trillions d'années
+18,284 mille ans,8 Billions d'années,2 Trillions d'années,52 Trillions d'années,463 Trillions d'années`;

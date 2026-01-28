@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Cartemdp } from "../../elements/cartemdp/cartemdp";
 import { Zoneduree } from "../../elements/zoneduree/zoneduree";
 import { CdkDragDrop, moveItemInArray, transferArrayItem, DragDropModule } from '@angular/cdk/drag-drop';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CSV_CONTENT } from '../../data/passwords-content';
+import { HIVE_TABLE_CONTENT } from '../../data/hive-table-content';
 import confetti from 'canvas-confetti';
 
 // --- Définitions des types (Modèles de données) ---
@@ -21,14 +22,15 @@ type PopupType = 'RULES' | 'INCOMPLETE' | 'VICTORY' | 'DEFEAT' | 'NONE';
 // Structure d'un mot de passe issu du parsing CSV.
 interface ParsedPwd {
   pwd: string;
-  dur: string;
+  TxtDuree: string;
+  duree: number
 }
 
 // --- Composant principal du jeu ---
 @Component({
   selector: 'app-jeumdp',
   standalone: true,
-  imports: [Cartemdp, Zoneduree, DragDropModule, CommonModule],
+  imports: [Cartemdp, Zoneduree, DragDropModule, CommonModule, RouterModule],
   templateUrl: './jeumdp.html',
   styleUrl: './jeumdp.css',
 })
@@ -40,11 +42,12 @@ export class Jeumdp implements OnInit {
   // Initialisation du composant : démarre une nouvelle partie.
   ngOnInit() {
     this.startNewLevel();
+    this.parseHiveData();
   }
 
   // --- Utilitaires ---
 
-  // Mélange un tableau de manière aléatoire (Algorithme de Fisher-Yates).
+  // Mélange un tableau de manière aléatoire.
   shuffle(array: any[]) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -65,6 +68,10 @@ export class Jeumdp implements OnInit {
 
   // Zones de durée où les cartes doivent être déposées (cibles).
   zones: DurationZone[] = [];
+
+  // Données du tableau Hive
+  hiveHeaders: string[] = [];
+  hiveData: string[][] = [];
 
   // --- Paramètres du jeu ---
 
@@ -100,12 +107,13 @@ export class Jeumdp implements OnInit {
       }
       parts.push(current); // Ajout du dernier champ
 
-      // Extraction des colonnes utiles : Password (index 1) et Durée (index 4).
-      if (parts.length >= 6) {
+      // Extraction des colonnes utiles : Password (index 1), texte Durée (index 4) et Durée (index 6).
+      if (parts.length >= 7) {
         const pwd = parts[1];
-        const dur = parts[4];
-        if (pwd && dur) {
-          parsedData.push({ pwd, dur });
+        const TxtDuree = parts[4];
+        const duree = parts[6];
+        if (pwd && TxtDuree && duree) {
+          parsedData.push({ pwd, TxtDuree, duree: Number(duree) });
         }
       }
     }
@@ -113,11 +121,14 @@ export class Jeumdp implements OnInit {
     // 2. Sélection des mots de passe.
     // Regroupement par durée pour assurer une distribution variée.
     const durationMap = new Map<string, string[]>();
+    this.durationValues.clear(); // Reset map
+
     parsedData.forEach(item => {
-      if (!durationMap.has(item.dur)) {
-        durationMap.set(item.dur, []);
+      if (!durationMap.has(item.TxtDuree)) {
+        durationMap.set(item.TxtDuree, []);
+        this.durationValues.set(item.TxtDuree, item.duree);
       }
-      durationMap.get(item.dur)?.push(item.pwd);
+      durationMap.get(item.TxtDuree)?.push(item.pwd);
     });
 
     const uniqueDurations = Array.from(durationMap.keys());
@@ -130,24 +141,42 @@ export class Jeumdp implements OnInit {
     this.shuffle(uniqueDurations);
     const selectedDurations = uniqueDurations.slice(0, this.GAME_SIZE);
 
+    // Tri des durées pour l'affichage (ordre croissant).
+    selectedDurations.sort((a, b) => {
+      return (this.durationValues.get(a) || 0) - (this.durationValues.get(b) || 0);
+    });
+
     // 3. Initialisation du plateau.
     this.solutions = {};
     this.cartes = [];
     this.zones = [];
 
-    selectedDurations.forEach(dur => {
-      const candidates = durationMap.get(dur)!;
+    selectedDurations.forEach(TxtDuree => {
+      const candidates = durationMap.get(TxtDuree)!;
       // Choix d'un mot de passe aléatoire pour cette durée.
       const randomPwd = candidates[Math.floor(Math.random() * candidates.length)];
 
-      this.solutions[randomPwd] = dur;
+      this.solutions[randomPwd] = TxtDuree;
       this.cartes.push(randomPwd);
-      this.zones.push({ label: dur, items: [] });
+      this.zones.push({ label: TxtDuree, items: [] });
     });
 
-    // 4. Finalisation : mélange des cartes et des zones pour le joueur.
+    // 4. Finalisation : mélange des cartes pour le joueur.
     this.shuffle(this.cartes);
-    this.shuffle(this.zones);
+  }
+
+  // Stocke les valeurs numériques des durées pour le tri (ex: "3 jours" -> 259200)
+  private durationValues = new Map<string, number>();
+
+  // Retourne les solutions triées par durée croissante pour l'affichage de victoire
+  get sortedSolutions() {
+    return Object.entries(this.solutions)
+      .map(([pwd, duration]) => ({ pwd, duration }))
+      .sort((a, b) => {
+        const valA = this.durationValues.get(a.duration) || 0;
+        const valB = this.durationValues.get(b.duration) || 0;
+        return valA - valB;
+      });
   }
 
   // Gestion de la difficulté :
@@ -213,8 +242,29 @@ export class Jeumdp implements OnInit {
     } else {
       // En cas d'erreur, les cartes incorrectes retournent dans la pioche.
       this.cartes.push(...incorrectCards);
+      this.generateTips();
       this.currentPopup = 'DEFEAT';
     }
+  }
+
+  // --- Gestion des conseils ---
+  displayedTips: string[] = [];
+
+  readonly TIPS_LIST = [
+    "Compte les caractères ! Moins de 8 caractères ? C'est souvent 'Instantané' ou très rapide à trouver.",
+    "Regarde la complexité : Des chiffres seuls (même longs) sont beaucoup plus faibles qu'un mélange avec des lettres.",
+    "Repère les caractères spéciaux (@, #, !) : Dès qu'il y en a, la durée de craquage explose (souvent des siècles !).",
+    "Les majuscules comptent : Un mot de passe mélangé (Majuscules/Minuscules) est bien plus résistant.",
+    "Méfie-toi des classiques : '123456', 'password' ou 'azerty' sont quasiment toujours 'Instantanés'.",
+    "Longueur vs Complexité : Un mot de passe très long (+12 caractères) est souvent extrêmement long à craquer, même s'il est simple.",
+    "Utilise le tableau d'aide en bas de page : Il te donne les réponses selon le nombre de caractères et leur type.",
+    "Compare les cartes : Si deux mots de passe ont la même longueur, celui avec le plus de symboles bizarres gagne !"
+  ];
+
+  generateTips() {
+    // Sélectionne 2 conseils aléatoires pour ne pas surcharger
+    const shuffled = [...this.TIPS_LIST].sort(() => 0.5 - Math.random());
+    this.displayedTips = shuffled.slice(0, 2);
   }
 
   // Déclenche l'animation de confettis (bibliothèque canvas-confetti).
@@ -244,6 +294,76 @@ export class Jeumdp implements OnInit {
         requestAnimationFrame(frame);
       }
     }());
+  }
+
+  // --- Gestion du tableau Hive ---
+
+  parseHiveData() {
+    const rows = HIVE_TABLE_CONTENT.trim().split('\n');
+    if (rows.length > 0) {
+      // Parse headers (first row) specifically handling quotes
+      this.hiveHeaders = this.parseCsvLine(rows[0]);
+
+      // Parse data rows
+      for (let i = 1; i < rows.length; i++) {
+        this.hiveData.push(this.parseCsvLine(rows[i]));
+      }
+    }
+  }
+
+  // Helper pour parser une ligne CSV en gérant les guillemets
+  parseCsvLine(line: string): string[] {
+    const parts: string[] = [];
+    let current = '';
+    let inQuote = false;
+
+    for (let char of line) {
+      if (char === '"') {
+        inQuote = !inQuote;
+      } else if (char === ',' && !inQuote) {
+        parts.push(current.trim()); // Trim to remove potential spaces around comparison
+        current = '';
+      } else {
+        current += char;
+      }
+    }
+    parts.push(current.trim());
+    return parts;
+  }
+
+  getDurationClass(duration: string): string {
+    if (!duration) return '';
+    const d = duration.toLowerCase();
+
+    // 1. VIOLET : Instantané
+    if (d.includes('instantan')) {
+      return 'duration-purple';
+    }
+
+    // 2. VERT : Extrêmement long (Milliards et plus)
+    // On a retiré "million" qui passe en jaune
+    if (d.includes('milliard') || d.includes('billion') || d.includes('trillion') || d.includes('billiard') || d.includes('quintillon') || d.includes('quadrillon')) {
+      return 'duration-green';
+    }
+
+    // 3. JAUNE : Très long (Millions)
+    if (d.includes('million')) {
+      return 'duration-yellow';
+    }
+
+    // 4. ROUGE : Court terme (jusqu'à semaines)
+    if (d.includes('minute') || d.includes('heure') || d.includes('jour') || d.includes('semaine')) {
+      return 'duration-red';
+    }
+
+    // 5. ORANGE : Moyen terme (Mois, Années, Siècles, Millénaires)
+    // Tout ce qui contient "an", "mois", "siècle" ou "mille" et qui n'a pas été traité avant.
+    if (d.includes('mois') || d.includes('an') || d.includes('siècle') || d.includes('mille')) {
+      return 'duration-orange';
+    }
+
+    // Par défaut
+    return '';
   }
 
   // --- Actions utilisateur ---

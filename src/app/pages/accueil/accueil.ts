@@ -11,7 +11,7 @@ import { Lectureaudio } from "../../elements/lectureaudio/lectureaudio";
   styleUrl: './accueil.css',
 })
 export class Accueil {
-  textePresentation: string = "Le Campus des Métiers et des Qualifications Informatique et Électronique de demain est un label trans-ministériel qui réunit à l’échelle de la région Auvergne-Rhône-Alpes des établissements de formation, des laboratoires de recherche, des entreprises et des institutions. Ce réseau d’acteurs se donne 3 missions :";
+  textePresentation: string = "Le Campus des Métiers et des Qualifications Informatique et Électronique de Demain [CMQ IED_AURA] est un label trans-ministériel qui réunit à l’échelle de la région Auvergne-Rhône-Alpes des établissements de formation, des laboratoires de recherche, des entreprises et des institutions. Ce réseau d’acteurs se donne 3 missions :";
 
   missionsPresentation: string[] = [
     "Soutenir le développement d’une filière porteuse d’avenir.",
@@ -30,6 +30,16 @@ export class Accueil {
     "Utilisez un gestionnaire de mots de passe pour stocker vos identifiants en toute sécurité."
   ];
 
+  texteCraquageMotsDePasse: string = "Il existe plusieurs méthodes pour craquer un mot de passe :";
+
+  methodesCraquageMotsDePasse: string[] = [
+    "Force Brute (Brute Force) : Un logiciel teste toutes les combinaisons possibles de touches une par une jusqu'à tomber sur la bonne.",
+    "Dictionnaire : Le logiciel teste une liste énorme de mots existants (dictionnaire, noms de villes, prénoms, équipes de foot) et de mots de passe courants.",
+    "Ingénierie Sociale (Social Engineering) : Un attaquant tente de vous convaincre de divulguer votre mot de passe de façon plus ou moins agressive.",
+  ];
+
+  texteCraquageMotsDePasseFin: string = "Il existe aussi d'autres méthodes tel que le Keylogger (Enregistreur de frappe), Spidering (espionnage de vos réseaux sociaux), Phishing (Hameçonnage) et bien d'autres.";
+
   texteRessources: string = "Pour approfondir vos connaissances, consultez les sites suivants :";
 
   get textePresentationAudio(): string {
@@ -38,5 +48,9 @@ export class Accueil {
 
   get texteMotsDePasseAudio(): string {
     return this.texteMotsDePasse + " " + this.conseilsMotsDePasse.join(" ");
+  }
+
+  get texteCraquageMotsDePasseAudio(): string {
+    return this.texteCraquageMotsDePasse + " " + this.methodesCraquageMotsDePasse.join(" ") + this.texteCraquageMotsDePasseFin;
   }
 }

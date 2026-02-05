@@ -60,7 +60,7 @@ Deux options s'offrent à vous :
 
 ### Commandes Utiles
 *   `ng serve` : Lance le serveur de développement (ou `npm start`).
-*   `npm run build` : Compile le projet pour la production dans le dossier `dist/`.
+*   `ng build` : Compile le projet pour la production dans le dossier `dist/` (ou `npm run build`).
 *   `ng serve --host 0.0.0.0` : Lance le serveur accessible depuis le réseau local.
 
 ### Stack Technique

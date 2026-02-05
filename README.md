@@ -2,7 +2,7 @@
 
 ## À propos du projet
 Ce site web a pour vocation de sensibiliser les utilisateurs aux bonnes pratiques de cybersécurité, et plus particulièrement à la création et à la gestion de mots de passe robustes.
-Il a été développé par [Lucas GUILLEMAUD](https://lucasguillemaud-portfolio.netlify.app) lors du stage de 2e année de BTS SIO au lycée Algoud Laffemas dans le cadre du projet CyberSkills@UGA au [[CMQ IED_AURA]](https://cmqiedaura.fr).
+Il a été développé par [Lucas GUILLEMAUD](https://www.linkedin.com/in/lucas-guillemaud/) lors du stage de 2e année de BTS SIO au lycée Algoud Laffemas dans le cadre du projet CyberSkills@UGA au [[CMQ IED_AURA]](https://cmqiedaura.fr).
 
 ### Fonctionnalités
 *   **Jeu "Maux de Passe"** : Un jeu interactif de glisser-déposer pour apprendre à estimer la résistance des mots de passe face aux attaques par force brute.
@@ -31,7 +31,7 @@ Deux options s'offrent à vous :
     2.  Choisissez **Download ZIP**.
     3.  Une fois téléchargé, faites un clic droit sur le fichier ZIP et choisissez **"Extraire tout"**.
 *   **Option Avancée (Git)** :
-    Ouvrez un terminal et tapez : `git clone [URL_DU_DEPOT]`
+    Ouvrez un terminal et tapez : `git clone https://github.com/Luk-26/SiteJeuMdP.git`
 
 ### Étape 3 : Installer et Lancer le site
 1.  Ouvrez le dossier du projet que vous venez de récupérer/extraire (vous devez y voir un fichier nommé `package.json`).
@@ -50,18 +50,25 @@ Deux options s'offrent à vous :
 5.  Ouvrez votre navigateur internet (Chrome, Firefox, Edge...) et allez à l'adresse suivante :
     👉 **http://localhost:4200/**
 
+6.  Si vous voulez lancer le site pour qu'il soit accessible sur le réseau local, tapez cette commande et appuyez sur la touche Entrée :
+    ```bash
+    npm run start:lan
+    ```
+
+7.  Ouvrez votre navigateur internet (Chrome, Firefox, Edge...) et allez à l'adresse qui s'affiche dans le terminal (exemple : `http://192.168.10.170:4200/`).
+
 ---
 
 ## 🛠️ Section Technique (Pour Développeurs)
 
 ### Prérequis
 *   **Node.js** (Version LTS)
-*   **Angular CLI** (optionnel si vous utilisez `npm start` qui utilise la version locale)
+*   **Angular CLI** (optionnel si vous utilisez `npm` qui utilise la version locale)
 
 ### Commandes Utiles
 *   `ng serve` : Lance le serveur de développement (ou `npm start`).
 *   `ng build` : Compile le projet pour la production dans le dossier `dist/` (ou `npm run build`).
-*   `ng serve --host 0.0.0.0` : Lance le serveur accessible depuis le réseau local.
+*   `ng serve --host 0.0.0.0` : Lance le serveur accessible depuis le réseau local (ou `npm run start:lan`).
 
 ### Stack Technique
 *   **Framework** : Angular 21+
@@ -77,7 +84,7 @@ Deux options s'offrent à vous :
 ## Crédits
 
 ### Équipe de développement
-*   **[Lucas GUILLEMAUD](https://lucasguillemaud-portfolio.netlify.app)** - *Développeur*
+*   **[Lucas GUILLEMAUD](https://www.linkedin.com/in/lucas-guillemaud/)** - *Développeur*
 *   **[Robin FECHOZ](https://www.linkedin.com/in/robin-fechoz-7579b9222/)** - *Ingénierie Pédagogique*
 
 ### Remerciements

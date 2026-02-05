@@ -110,6 +110,7 @@ a:hover {
     display: inline-block;
     background-color: var(--color-primary);
     color: var(--color-text-inverse);
+    text-align: center;
     padding: 15px 40px;
     font-family: var(--font-family-heading);
     font-size: 1.2rem;

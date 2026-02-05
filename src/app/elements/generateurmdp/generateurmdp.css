@@ -178,3 +178,71 @@ input[type="checkbox"] {
 #generer-mdp:hover {
     background-color: var(--color-primary-hover);
 }
+
+/* --- Section Gestionnaires de mots de passe --- */
+.separator {
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 30px 0;
+    width: 100%;
+}
+
+.password-managers-section {
+    background-color: rgb(240, 248, 255);
+    /* AliceBlue like color or use var if available, but hardcoded for safety based on theme */
+    border: 1px solid #e0e6ed;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+}
+
+.password-managers-section h3 {
+    color: var(--color-primary);
+    font-family: var(--font-family-heading);
+    font-size: 1.1rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.password-managers-section p {
+    font-family: var(--font-family-body);
+    color: var(--color-text-main);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.recommendation-text {
+    font-weight: 600;
+    color: var(--color-primary) !important;
+    margin-bottom: 15px !important;
+}
+
+.manager-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.manager-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: white;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    border-radius: 6px;
+    text-decoration: none;
+    font-family: var(--font-family-heading);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.manager-link:hover {
+    background-color: var(--color-primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

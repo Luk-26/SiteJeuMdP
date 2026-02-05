@@ -1,0 +1,88 @@
+<h1>{{ introTitle }}</h1>
+<section>
+    <app-lectureaudio [texte]="introAudio"></app-lectureaudio>
+    <h2>{{ introSubtitle }}</h2>
+    <p>{{ introText }}</p>
+</section>
+
+<div id="testeur-mdp">
+    <h2>Je teste l'efficacité de mon mot de passe</h2>
+    <app-testeurmdp></app-testeurmdp>
+</div>
+
+<div class="tutorial-columns">
+    <!-- Colonne Gauche : Fondamentaux & Bonnes Pratiques -->
+    <div class="column">
+        <!-- Basics -->
+        <section class="content-card">
+            <app-lectureaudio [texte]="basicsAudio"></app-lectureaudio>
+            <h3>{{ basicsTitle }}</h3>
+            <div class="card-list">
+                @for (item of basicsList; track item) {
+                <div class="card-item warning">
+                    <span class="icon">&#9888;</span>
+                    <p>{{ item }}</p>
+                </div>
+                }
+            </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section class="content-card">
+            <app-lectureaudio [texte]="bestPracticesAudio"></app-lectureaudio>
+            <h3>{{ bestPracticesTitle }}</h3>
+            <ul class="check-list">
+                @for (practice of bestPracticesList; track practice) {
+                <li>
+                    <span class="check-icon">&#9989;</span>
+                    <span [innerHTML]="practice"></span>
+                </li>
+                }
+            </ul>
+        </section>
+    </div>
+
+    <!-- Colonne Droite : Méthodes -->
+    <div class="column">
+        <!-- Méthode Phonétique -->
+        <section class="content-card">
+            <app-lectureaudio [texte]="phoneticAudio"></app-lectureaudio>
+            <h3>{{ methodPhoneticTitle }}</h3>
+            <p class="method-desc">{{ methodPhoneticDesc }}</p>
+            <ol class="steps-list">
+                @for (step of methodPhoneticSteps; track step) {
+                <li [innerHTML]="step"></li>
+                }
+            </ol>
+        </section>
+
+        <!-- Méthode Phrase de Passe -->
+        <section class="content-card">
+            <app-lectureaudio [texte]="passphraseAudio"></app-lectureaudio>
+            <h3>{{ methodPassphraseTitle }}</h3>
+            <p class="method-desc">{{ methodPassphraseDesc }}</p>
+            <ol class="steps-list">
+                @for (step of methodPassphraseSteps; track step) {
+                <li [innerHTML]="step"></li>
+                }
+            </ol>
+        </section>
+
+        <!-- Méthode Générateur -->
+        <section class="content-card">
+            <app-lectureaudio [texte]="generatorAudio"></app-lectureaudio>
+            <h3>{{ methodGeneratorTitle }}</h3>
+            <p class="method-desc">{{ methodGeneratorDesc }}</p>
+            <ol class="steps-list">
+                @for (step of methodGeneratorSteps; track step) {
+                <li [innerHTML]="step"></li>
+                }
+            </ol>
+        </section>
+    </div>
+</div>
+
+<div class="action-container">
+    <p>Prêt à tester ou générer vos mots de passe ?</p>
+    <a routerLink="/boite-a-outils" class="btn-action">Je teste mon mot de passe !</a>
+</div>

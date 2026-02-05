@@ -1,0 +1,271 @@
+:host {
+    display: block;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Basic Section Layout */
+/* Sections Global Style (matching Accueil) */
+section {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: var(--box-shadow-card);
+    padding: 30px;
+    margin-bottom: 30px;
+    position: relative;
+    /* For audio button */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section:hover {
+    transform: scale(1.01);
+    /* Subtle hover effect */
+    box-shadow: var(--box-shadow-hover);
+}
+
+/* Audio Button Positioning */
+app-lectureaudio {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+h1 {
+    font-family: var(--font-family-heading);
+    color: var(--color-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+h2 {
+    font-family: var(--font-family-heading);
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 25px;
+    /* Increased margin for better spacing */
+    border-bottom: 2px solid var(--color-secondary);
+    padding-bottom: 10px;
+    display: block;
+    width: fit-content;
+}
+
+h3 {
+    color: var(--color-primary);
+    font-family: var(--font-family-heading);
+    margin-top: 0;
+}
+
+p {
+    font-family: var(--font-family-body);
+    color: var(--color-text-main);
+    line-height: 1.6;
+    font-size: 1rem;
+    margin-top: 0;
+}
+
+/* Intro */
+.intro-section p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Cards List (Basics) */
+/* Basics Cards */
+.card-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.card-item {
+    background-color: var(--bg-section-alt);
+    border-radius: var(--border-radius-md);
+    padding: 1rem;
+    flex: 1 1 200px;
+    /* Slightly smaller base */
+    display: flex;
+    align-items: center;
+    /* Center vertically */
+    box-shadow: var(--box-shadow-card);
+    transition: transform var(--transition-speed);
+}
+
+.card-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow-hover);
+}
+
+.card-item .icon {
+    font-size: 1.5rem;
+    margin-right: 0.8rem;
+    min-width: 30px;
+    /* Ensure icon doesn't shrink */
+    text-align: center;
+}
+
+.card-item p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Methods Section */
+/* Methods Layout */
+/* Tutorial Columns Layout */
+.tutorial-columns {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    /* Wrap on smaller screens */
+    margin-bottom: 30px;
+}
+
+.column {
+    flex: 1 1 400px;
+    /* Each column takes equal space, min 400px */
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.content-card {
+    background-color: white;
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--box-shadow-card);
+    position: relative;
+    /* For audio button */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    /* Take full width of parent column */
+    box-sizing: border-box;
+}
+
+.content-card:hover {
+    transform: scale(1.01);
+    box-shadow: var(--box-shadow-hover);
+}
+
+/* Specific styling for list items inside cards if needed */
+.content-card h3 {
+    margin-top: 15px;
+    /* Space for audio button */
+}
+
+.method-desc {
+    font-style: italic;
+    color: var(--color-text-light);
+    margin-bottom: 1rem;
+}
+
+.steps-list {
+    padding-left: 1.2rem;
+}
+
+.steps-list li {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+/* Best Practices */
+/* Best Practices Check List */
+.check-list {
+    list-style: none;
+    padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.check-list li {
+    background-color: #e8f5e9;
+    /* Light green background */
+    margin-bottom: 0.8rem;
+    padding: 1rem;
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: center;
+}
+
+.check-icon {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+/* Action Button */
+/* Action Button Container (matching Accueil) */
+.action-container {
+    display: flex;
+    flex-direction: column;
+    /* Center text and button */
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 2rem;
+    background-color: white;
+    /* Or transparent if preferred */
+    border-radius: var(--border-radius-lg);
+}
+
+.btn-action {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
+    text-align: center;
+    padding: 15px 40px;
+    font-family: var(--font-family-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: var(--box-shadow-card);
+}
+
+.btn-action:hover {
+    background-color: var(--color-accent);
+    transform: scale(1.05);
+}
+
+:host ::ng-deep a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+:host ::ng-deep a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+#testeur-mdp {
+    margin: 40px auto;
+    flex: 1;
+    min-width: 300px;
+    /* Les empêcher de devenir trop fins */
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: var(--box-shadow-card);
+    /* Ombre de la carte */
+    padding: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--color-border-light);
+    /* Bordure subtile */
+}
+
+#testeur-mdp:hover {
+    transform: scale(1.005);
+    /* Effet de levée douce */
+    box-shadow: var(--box-shadow-hover);
+}

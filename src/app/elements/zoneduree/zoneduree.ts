@@ -10,6 +10,6 @@ import { Component, Input } from '@angular/core';
   styleUrl: './zoneduree.css',
 })
 export class Zoneduree {
-  // Le libellé de la durée (ex: "3 jours", "Instantanné").
+  // Le libellé de la durée (ex: "3 jours", "Instantané").
   @Input() duree: string = '';
 }

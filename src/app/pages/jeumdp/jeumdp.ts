@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { Cartemdp } from "../../elements/cartemdp/cartemdp";
 import { Zoneduree } from "../../elements/zoneduree/zoneduree";
 import { CdkDragDrop, moveItemInArray, transferArrayItem, DragDropModule } from '@angular/cdk/drag-drop';
@@ -34,10 +34,10 @@ interface ParsedPwd {
   templateUrl: './jeumdp.html',
   styleUrl: './jeumdp.css',
 })
-export class Jeumdp implements OnInit {
+export class Jeumdp implements OnInit, OnDestroy {
 
   // Injection du service Router pour la navigation.
-  constructor(private router: Router) { }
+  constructor(private router: Router, private ref: ChangeDetectorRef) { }
 
   // Initialisation du composant : démarre une nouvelle partie.
   ngOnInit() {
@@ -76,13 +76,27 @@ export class Jeumdp implements OnInit {
   // --- Paramètres du jeu ---
 
   // Nombre de cartes et d'emplacements à générer pour une partie et de la difficulté
-  difficulty: 'veryeasy' | 'easy' | 'medium' | 'hard' | 'veryhard' = 'medium';
-  GAME_SIZE = 9;
+  difficulty: 'veryeasy' | 'easy' | 'medium' | 'hard' | 'veryhard' = 'veryeasy';
+  GAME_SIZE = 3;
+
+  // Compteur d'essais
+  nbEssais: number = 0;
 
   // --- Logique du jeu ---
 
   // Prépare et lance un nouveau niveau.
   startNewLevel() {
+
+    this.nbEssais = 0;
+    this.stopTimer();
+    this.elapsedSeconds = 0;
+    this.formattedTime = '00:00';
+
+    // Si on change de niveau en cours de jeu (sans popup bloquante), on relance le chrono
+    if (this.currentPopup === 'NONE') {
+      this.startTimer();
+    }
+
     // 1. Parsing du fichier CSV injecté via CSV_CONTENT.
     const rows = CSV_CONTENT.trim().split('\n');
     const parsedData: ParsedPwd[] = [];
@@ -204,6 +218,18 @@ export class Jeumdp implements OnInit {
     this.startNewLevel();
   }
 
+  readonly difficultyOrder: ('veryeasy' | 'easy' | 'medium' | 'hard' | 'veryhard')[] = ['veryeasy', 'easy', 'medium', 'hard', 'veryhard'];
+
+  goToNextLevel() {
+    const currentIndex = this.difficultyOrder.indexOf(this.difficulty);
+    if (currentIndex >= 0 && currentIndex < this.difficultyOrder.length - 1) {
+      const nextDifficulty = this.difficultyOrder[currentIndex + 1];
+      this.setDifficulty(nextDifficulty);
+      this.closePopup();
+      this.startTimer();
+    }
+  }
+
   // --- Gestion de l'interface ---
 
   closePopup() {
@@ -218,6 +244,7 @@ export class Jeumdp implements OnInit {
       return;
     }
 
+    this.nbEssais++;
     let allCorrect = true;
     const incorrectCards: string[] = [];
 
@@ -238,6 +265,7 @@ export class Jeumdp implements OnInit {
 
     if (allCorrect) {
       this.currentPopup = 'VICTORY';
+      this.stopTimer();
       this.triggerConfetti();
     } else {
       // En cas d'erreur, les cartes incorrectes retournent dans la pioche.
@@ -301,10 +329,10 @@ export class Jeumdp implements OnInit {
   parseHiveData() {
     const rows = HIVE_TABLE_CONTENT.trim().split('\n');
     if (rows.length > 0) {
-      // Parse headers (first row) specifically handling quotes
+      // Analyse des entêtes (première ligne) en gérant spécifiquement les guillemets
       this.hiveHeaders = this.parseCsvLine(rows[0]);
 
-      // Parse data rows
+      // Analyse des lignes de données
       for (let i = 1; i < rows.length; i++) {
         this.hiveData.push(this.parseCsvLine(rows[i]));
       }
@@ -321,7 +349,7 @@ export class Jeumdp implements OnInit {
       if (char === '"') {
         inQuote = !inQuote;
       } else if (char === ',' && !inQuote) {
-        parts.push(current.trim()); // Trim to remove potential spaces around comparison
+        parts.push(current.trim()); // Nettoyage des espaces potentiels pour la comparaison
         current = '';
       } else {
         current += char;
@@ -342,7 +370,7 @@ export class Jeumdp implements OnInit {
 
     // 2. VERT : Extrêmement long (Milliards et plus)
     // On a retiré "million" qui passe en jaune
-    if (d.includes('milliard') || d.includes('billion') || d.includes('trillion') || d.includes('billiard') || d.includes('quintillon') || d.includes('quadrillon')) {
+    if (d.includes('milliard') || d.includes('billion') || d.includes('trillion') || d.includes('billiard') || d.includes('quintillion') || d.includes('quadrillion')) {
       return 'duration-green';
     }
 
@@ -371,10 +399,53 @@ export class Jeumdp implements OnInit {
   resetGame() {
     this.startNewLevel();
     this.closePopup();
+    this.startTimer();
   }
 
-  goToTools() {
-    this.router.navigate(['/boite-a-outils']);
+  launchGame() {
+    this.closePopup();
+    this.startTimer();
+  }
+
+  goToTutoMdp() {
+    this.router.navigate(['/tuto-mdp']);
+  }
+
+  // --- Gestion du Chronomètre ---
+  timerInterval: any;
+  elapsedSeconds: number = 0;
+  formattedTime: string = '00:00';
+
+  ngOnDestroy() {
+    this.stopTimer();
+  }
+
+  startTimer() {
+    this.stopTimer();
+    this.formattedTime = '00:00';
+    this.elapsedSeconds = 0;
+    this.timerInterval = setInterval(() => {
+      this.elapsedSeconds++;
+      this.updateFormattedTime();
+      this.ref.markForCheck(); // Force la détection des changements
+    }, 1000);
+  }
+
+  stopTimer() {
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+      this.timerInterval = null;
+    }
+  }
+
+  updateFormattedTime() {
+    const minutes = Math.floor(this.elapsedSeconds / 60);
+    const seconds = this.elapsedSeconds % 60;
+    this.formattedTime = `${this.pad(minutes)}:${this.pad(seconds)}`;
+  }
+
+  pad(val: number): string {
+    return val < 10 ? `0${val}` : `${val}`;
   }
 
   // --- Gestion du Drag & Drop ---
@@ -389,8 +460,18 @@ export class Jeumdp implements OnInit {
 
       const isTargetZone = event.container.data !== this.cartes;
 
-      // Contrainte : Une zone de réponse ne peut contenir qu'une seule carte.
+      // Si la zone cible est une zone de réponse et qu'elle contient déjà une carte...
       if (isTargetZone && event.container.data.length >= 1) {
+        // Echange : La nouvelle prend la place dans la zone, l'ancienne prend la place de la nouvelle
+        const targetCard = event.container.data[0];
+        const sourceCard = event.previousContainer.data[event.previousIndex];
+
+        // On remplace la carte dans la zone cible
+        event.container.data[0] = sourceCard;
+
+        // On place l'ancienne carte de la zone cible à l'endroit d'où venait la nouvelle
+        event.previousContainer.data[event.previousIndex] = targetCard;
+
         return;
       }
 

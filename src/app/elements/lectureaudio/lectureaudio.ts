@@ -1,6 +1,8 @@
 import { Component, Input, Inject, PLATFORM_ID, NgZone, ChangeDetectorRef } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
+// --- Composant Lecture Audio ---
+// Bouton permettant de lire le contenu textuel de la page via la synthèse vocale du navigateur.
 @Component({
   selector: 'app-lectureaudio',
   imports: [],

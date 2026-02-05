@@ -12,40 +12,67 @@ Il a été développé par [Lucas GUILLEMAUD](https://lucasguillemaud-portfolio.
 *   **Lecture Audio** : Une fonctionnalité d'accessibilité permettant d'écouter le contenu des pages (Accueil et Tutoriel) pour une meilleure inclusion.
 *   **Accueil** : Présentation, explications et liens vers des sites de référence.
 
-## Guide de contribution
+---
 
-### Prérequis
-*   Node.js (Version LTS recommandée)
-*   Angular CLI
+## 🚀 Guide d'Installation (Pas à Pas)
 
-### Installation et Lancement
-1.  **Cloner le dépôt** :
-    ```bash
-    git clone [URL_DU_DEPOT]
-    cd SiteJeuMdP
-    ```
-2.  **Installer les dépendances** :
+Cette section est conçue pour être suivie par n'importe qui, même sans connaissances techniques.
+
+### Étape 1 : Installer les logiciels nécessaires
+Pour que le site fonctionne sur votre ordinateur, vous avez besoin d'un moteur appelé **Node.js**.
+1.  Allez sur le site officiel : **[nodejs.org](https://nodejs.org/en/download/)**.
+2.  Téléchargez la version recommandée (**LTS**).
+3.  Installez-le comme un logiciel classique (faites "Suivant" jusqu'à la fin).
+
+### Étape 2 : Récupérer le code du site
+Deux options s'offrent à vous :
+*   **Option Facile (ZIP)** : 
+    1.  Cliquez sur le bouton vert **Code** en haut de la page GitHub (ou GitLab).
+    2.  Choisissez **Download ZIP**.
+    3.  Une fois téléchargé, faites un clic droit sur le fichier ZIP et choisissez **"Extraire tout"**.
+*   **Option Avancée (Git)** :
+    Ouvrez un terminal et tapez : `git clone [URL_DU_DEPOT]`
+
+### Étape 3 : Installer et Lancer le site
+1.  Ouvrez le dossier du projet que vous venez de récupérer/extraire (vous devez y voir un fichier nommé `package.json`).
+2.  Faites un **clic droit** dans un espace vide du dossier, puis sélectionnez **"Ouvrir dans le terminal"** (ou "PowerShell", ou "Invite de commandes").
+3.  Dans la fenêtre qui s'ouvre (souvent bleue ou noire), tapez cette commande et appuyez sur la touche **Entrée** :
     ```bash
     npm install
     ```
-3.  **Lancer le serveur de développement** :
+    *(Attendez quelques minutes que les téléchargements se terminent).*
+
+4.  Une fois terminé, tapez cette commande pour démarrer le site :
     ```bash
-    ng serve
-    ```
-4.  **Lancer le serveur de développement avec un accès pour tout le réseau** :
-    ```bash
-    ng serve --host 0.0.0.0
+    npm start
     ```
 
-    Ouvrez votre navigateur à l'adresse `http://localhost:4200/` ou sur l'ip affiché dans la console.
+5.  Ouvrez votre navigateur internet (Chrome, Firefox, Edge...) et allez à l'adresse suivante :
+    👉 **http://localhost:4200/**
 
-## Stack Technique
-*   **Framework** : Angular 19+
+---
+
+## 🛠️ Section Technique (Pour Développeurs)
+
+### Prérequis
+*   **Node.js** (Version LTS)
+*   **Angular CLI** (optionnel si vous utilisez `npm start` qui utilise la version locale)
+
+### Commandes Utiles
+*   `ng serve` : Lance le serveur de développement (ou `npm start`).
+*   `npm run build` : Compile le projet pour la production dans le dossier `dist/`.
+*   `ng serve --host 0.0.0.0` : Lance le serveur accessible depuis le réseau local.
+
+### Stack Technique
+*   **Framework** : Angular 21+
+*   **Langage** : TypeScript
 *   **Styles** : CSS Vanilla (Design responsive et moderne)
 *   **Bibliothèques clés** : 
     *   `zxcvbn` (Estimation force mot de passe)
     *   `canvas-confetti` (Effets visuels)
     *   `@angular/cdk` (Drag & Drop)
+
+---
 
 ## Crédits
 

@@ -30,6 +30,9 @@ export class Accueil {
     "Utilisez un gestionnaire de mots de passe pour stocker vos identifiants en toute sécurité."
   ];
 
+  texteLienTutoIntro: string = "Pour apprendre à créer vos mots de passe pas à pas, n'hésitez pas à consulter notre ";
+  texteLienTutoLink: string = "tutoriel";
+
   texteCraquageMotsDePasse: string = "Il existe plusieurs méthodes pour craquer un mot de passe :";
 
   methodesCraquageMotsDePasse: string[] = [
@@ -38,16 +41,17 @@ export class Accueil {
     "Ingénierie Sociale (Social Engineering) : Un attaquant tente de vous convaincre de divulguer votre mot de passe de façon plus ou moins agressive.",
   ];
 
-  texteCraquageMotsDePasseFin: string = "Il existe aussi d'autres méthodes tel que le Keylogger (Enregistreur de frappe), Spidering (espionnage de vos réseaux sociaux), Phishing (Hameçonnage) et bien d'autres.";
+  texteCraquageMotsDePasseFin: string = "Il existe aussi d'autres méthodes telles que le Keylogger (Enregistreur de frappe), Spidering (espionnage de vos réseaux sociaux), Phishing (Hameçonnage) et bien d'autres.";
 
   texteRessources: string = "Pour approfondir vos connaissances, consultez les sites suivants :";
+
 
   get textePresentationAudio(): string {
     return this.textePresentation + " " + this.missionsPresentation.join(" ");
   }
 
   get texteMotsDePasseAudio(): string {
-    return this.texteMotsDePasse + " " + this.conseilsMotsDePasse.join(" ");
+    return this.texteMotsDePasse + " " + this.conseilsMotsDePasse.join(" ") + " " + this.texteLienTutoIntro + this.texteLienTutoLink;
   }
 
   get texteCraquageMotsDePasseAudio(): string {

@@ -45,7 +45,7 @@
           Pour chaque carte dans notre liste "cartes", on affiche un composant <app-cartemdp>.
           C'est comme une photocopieuse qui crée autant de cartes qu'on en a besoin.
         -->
-    @for (carte of cartes; track carte) {
+    @for (carte of cartes; track $index) {
     <!-- "cdkDrag" signifie que cet élément peut être attrapé et déplacé à la souris -->
     <app-cartemdp [texte]="carte" cdkDrag></app-cartemdp>
     }
@@ -77,12 +77,17 @@
               Si une carte a été déposée ici, on l'affiche.
               Comme il ne peut y avoir qu'une carte par zone, cette boucle affichera 0 ou 1 carte.
             -->
-      @for (item of zone.items; track item) {
+      @for (item of zone.items; track $index) {
       <app-cartemdp [texte]="item" cdkDrag></app-cartemdp>
       }
     </div>
     }
   </div>
+</div>
+
+<div class="stats-container">
+  <p>Nombre d'essais : {{ nbEssais }}</p>
+  <p class="timer-display">Temps : {{ formattedTime }}</p>
 </div>
 
 <!-- 
@@ -103,6 +108,7 @@
 <a routerLink="/" fragment="craquage" class="link-craquage">La méthode utilisée est le brute force.</a>
 
 <!-- TABLEAU HIVE 2025 -->
+@if(difficulty !== 'veryhard') {
 <div class="hive-data-section">
   <h3>Tableau de référence - Hive Systems 2025</h3>
   <div class="table-responsive">
@@ -129,6 +135,7 @@
     </table>
   </div>
 </div>
+}
 
 <!-- 
   GESTION DES POPUPS (Fenêtres surgissantes)
@@ -145,7 +152,7 @@
     <p>Bienvenue dans le jeu maux de passe !</p>
     <p>Votre objectif est d'associer chaque mot de passe à sa durée de craquage estimée.</p>
     <p>Glissez les cartes de gauche vers les zones correspondantes à droite.</p>
-    <button (click)="closePopup()" class="btn-popup">Commencer</button>
+    <button (click)="launchGame()" class="btn-popup">Commencer</button>
     }
 
     <!-- SCÉNARIO 2 : JEU INCOMPLET (Le joueur a cliqué sur Valider trop tôt) -->
@@ -160,7 +167,8 @@
     @if (currentPopup === 'VICTORY') {
     <div class="victory-icon">&#127881;</div>
     <h2>Félicitations !</h2>
-    <p>Vous avez correctement classé tous les mots de passe !</p>
+    <p>Vous avez correctement classé tous les mots de passe en {{ nbEssais }} essais !</p>
+    <p class="victory-time">Temps : {{ formattedTime }}</p>
 
     <div class="victory-list container-fluid">
       <h3>Solutions de cette partie :</h3>
@@ -177,8 +185,14 @@
     <div class="popup-actions">
       <!-- Bouton pour rejouer -->
       <button (click)="resetGame()" class="btn-popup">Nouvelle partie</button>
-      <!-- Bouton pour aller voir les outils -->
-      <button (click)="goToTools()" class="btn-popup secondary">Boîte à outils</button>
+
+      <!-- Bouton niveau suivant -->
+      @if (difficulty !== 'veryhard') {
+      <button (click)="goToNextLevel()" class="btn-popup">Niveau suivant</button>
+      }
+
+      <!-- Bouton pour aller voir le tuto création mdp -->
+      <button (click)="goToTutoMdp()" class="btn-popup secondary">Je crée mon mot de passe !</button>
     </div>
     }
 

@@ -106,6 +106,38 @@
     gap: 15px;
 }
 
+/* Zone d'affichage du compteur d'essais */
+.stats-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    background: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+    border: 2px solid var(--color-primary);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stats-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.stats-container p {
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    font-weight: 700;
+    font-family: var(--font-family-heading);
+    margin: 0;
+}
+
+.timer-display {
+    color: var(--color-secondary);
+}
+
 #btn-jeu-mdp {
     background-color: var(--color-primary);
     color: var(--color-text-inverse);
@@ -321,6 +353,13 @@ h2 {
     box-shadow: 0 0 25px rgba(80, 118, 147, 0.6);
 }
 
+.victory-time {
+    font-size: 1.5rem;
+    color: var(--color-danger);
+    font-weight: bold;
+    margin: 10px 0;
+}
+
 @media (max-width: 480px) {
     .popup-content {
         padding: 20px;
@@ -451,6 +490,7 @@ a:hover {
         padding: 8px 4px;
     }
 }
+
 /* --- LISTE DES SOLUTIONS (VICTOIRE) --- */
 .victory-list {
     text-align: left;
@@ -576,36 +616,45 @@ a:hover {
 /* --- COULEURS HIVE SYSTEMS 2025 --- */
 /* Violet : Instantané */
 .duration-purple {
-    background-color: #d1c4e9; /* Violet clair */
-    color: #4a148c; /* Violet foncé */
+    background-color: #d1c4e9;
+    /* Violet clair */
+    color: #4a148c;
+    /* Violet foncé */
     font-weight: 700;
 }
 
 /* Rouge : Minutes / Heures */
 .duration-red {
-    background-color: #ffcdd2; /* Rouge clair */
-    color: #b71c1c; /* Rouge foncé */
+    background-color: #ffcdd2;
+    /* Rouge clair */
+    color: #b71c1c;
+    /* Rouge foncé */
     font-weight: 700;
 }
 
 /* Orange : Jours / Semaines / Mois */
 .duration-orange {
-    background-color: #ffe0b2; /* Orange clair */
-    color: #e65100; /* Orange foncé */
+    background-color: #ffe0b2;
+    /* Orange clair */
+    color: #e65100;
+    /* Orange foncé */
     font-weight: 700;
 }
 
 /* Jaune : Années */
 .duration-yellow {
-    background-color: #fff9c4; /* Jaune clair */
-    color: #f57f17; /* Jaune foncé/moutarde */
+    background-color: #fff9c4;
+    /* Jaune clair */
+    color: #f57f17;
+    /* Jaune foncé/moutarde */
     font-weight: 700;
 }
 
 /* Vert : Siècles et plus */
 .duration-green {
-    background-color: #c8e6c9; /* Vert clair */
-    color: #1b5e20; /* Vert foncé */
+    background-color: #c8e6c9;
+    /* Vert clair */
+    color: #1b5e20;
+    /* Vert foncé */
     font-weight: 700;
 }
-

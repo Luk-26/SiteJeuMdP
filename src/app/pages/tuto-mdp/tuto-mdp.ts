@@ -19,7 +19,7 @@ export class TutoMdp {
   introText: string = "Sécuriser ses comptes est devenu primordial. Votre mot de passe est souvent la seule barrière entre vos données personnelles et des personnes malveillantes. Mais comment créer un mot de passe qui soit à la fois robuste (difficile à craquer) et mémorisable ?";
 
   // --- Contenu Rappels ---
-  basicsTitle: string = "Les fondamentaux";
+  basicsTitle: string = "Les Fondamentaux";
   basicsList: string[] = [
     "Longueur : 12 caractères minimum (plus c'est long, mieux c'est).",
     "Variété : Mélangez Majuscules, minuscules, Chiffres et Caractères spéciaux (! @ # $ % ...).",
@@ -29,13 +29,13 @@ export class TutoMdp {
   ];
 
   // --- Contenu Méthodes ---
-  methodsTitle: string = "Les méthodes de création";
+  methodsTitle: string = "Les Méthodes de Création";
 
-  methodPhoneticTitle: string = "1. La méthode Phonétique";
+  methodPhoneticTitle: string = "1. La Méthode Phonétique";
   methodPhoneticDesc: string = "Cette méthode consiste à utiliser une phrase que vous pouvez retenir facilement, et à ne garder que les sons ou les premières lettres de chaque mot.";
   methodPhoneticSteps: string[] = [
-    "Choisissez une phrase simple : 'J'ai acheté huit cd pour cent-vingt euros cet après-midi !'",
-    "Transformez en sons/sigles : 'J'ai' &#10140; G, 'acheté' &#10140; ht, 'huit' &#10140; 8, 'cd' &#10140; CD, 'pour cent' &#10140; %, 'vingt' &#10140; 2O, 'euros' &#10140; €, 'cet' &#10140; 7, 'après-midi' &#10140; am, '!' &#10140; !",
+    "Choisissez une phrase simple : \"J'ai acheté huit cd pour cent-vingt euros cet après-midi !\"",
+    "Transformez en sons/sigles : <ul><li>\"J'ai\" &#10140; G</li><li>\"acheté\" &#10140; ht</li><li>\"huit\" &#10140; 8</li><li>\"cd\" &#10140; CD</li><li>\"pour cent\" &#10140; %</li><li>\"vingt\" &#10140; 2O</li><li>\"euros\" &#10140; €</li><li>\"cet\" &#10140; 7</li><li>\"après-midi\" &#10140; am</li><li>\"!\" &#10140; !</li></ul>",
     "Résultat final : Ght8CD%2O€7am!"
   ];
 
@@ -43,7 +43,7 @@ export class TutoMdp {
   methodPassphraseDesc: string = "Plus longue à taper mais très robuste et facile à retenir. Elle consiste à enchaîner plusieurs mots choisis aléatoirement.";
   methodPassphraseSteps: string[] = [
     "Prenez 5 ou 6 mots au hasard dans le dictionnaire ou autour de vous (sans lien logique).",
-    "Exemple : 'Correction', 'Cheval', 'Batterie', 'Agrafe', 'Lune'.",
+    "Exemple : \"Correction\", \"Cheval\", \"Batterie\", \"Agrafe\", \"Lune\".",
     "Attachez-les avec un séparateur (tiret, point, slash...).",
     "Résultat final : Correction-Cheval-Batterie-Agrafe-Lune"
   ];

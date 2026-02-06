@@ -4,11 +4,11 @@
 -->
 
 <!-- Titre principal de la page -->
-<h1>Jeu maux de passe</h1>
+<h1>Jeu Maux de passe</h1>
 
 <!-- Zone de contrôle de la difficulté (très facile/facile/moyen/difficile/très difficile) -->
 <div id="zone-difficulte">
-  <h2>Difficulté</h2>
+  <h2>Difficulté :</h2>
   <button class="bouton-difficulty" [class.active]="difficulty === 'veryeasy'" (click)="setDifficulty('veryeasy')">Très
     facile</button>
   <button class="bouton-difficulty" [class.active]="difficulty === 'easy'"
@@ -149,7 +149,7 @@
     <!-- SCÉNARIO 1 : LES RÈGLES DU JEU (Affiché au début) -->
     @if (currentPopup === 'RULES') {
     <h2>Règles du jeu</h2>
-    <p>Bienvenue dans le jeu maux de passe !</p>
+    <p><b>Bienvenue dans le jeu Maux de passe !</b></p>
     <p>Votre objectif est d'associer chaque mot de passe à sa durée de craquage estimée.</p>
     <p>Glissez les cartes de gauche vers les zones correspondantes à droite.</p>
     <button (click)="launchGame()" class="btn-popup">Commencer</button>
@@ -202,7 +202,7 @@
     <p>Il y a des erreurs dans votre classement.</p>
     <p>Ne vous découragez pas, essayez encore !</p>
     <div class="error-conseils">
-      <h3>Le sais-tu ?</h3>
+      <h3>Le Saviez-Vous ?</h3>
       <ul>
         @for (tip of displayedTips; track tip) {
         <li>&#128161; {{ tip }}</li>

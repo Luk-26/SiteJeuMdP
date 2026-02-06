@@ -278,15 +278,19 @@ export class Jeumdp implements OnInit, OnDestroy {
   // --- Gestion des conseils ---
   displayedTips: string[] = [];
 
+  /**
+   * Liste des conseils pour aider l'utilisateur à estimer la robustesse d'un mot de passe.
+   * Les conseils ont été reformulés pour utiliser le vouvoiement.
+   */
   readonly TIPS_LIST = [
-    "Compte les caractères ! Moins de 8 caractères ? C'est souvent 'Instantané' ou très rapide à trouver.",
-    "Regarde la complexité : Des chiffres seuls (même longs) sont beaucoup plus faibles qu'un mélange avec des lettres.",
-    "Repère les caractères spéciaux (@, #, !) : Dès qu'il y en a, la durée de craquage explose (souvent des siècles !).",
+    "Comptez les caractères ! Moins de 8 caractères ? C'est souvent 'Instantané' ou très rapide à trouver.",
+    "Regardez la complexité : Des chiffres seuls (même longs) sont beaucoup plus faibles qu'un mélange avec des lettres.",
+    "Repérez les caractères spéciaux (@, #, !) : Dès qu'il y en a, la durée de craquage explose (souvent des siècles !).",
     "Les majuscules comptent : Un mot de passe mélangé (Majuscules/Minuscules) est bien plus résistant.",
-    "Méfie-toi des classiques : '123456', 'password' ou 'azerty' sont quasiment toujours 'Instantanés'.",
+    "Méfiez-vous des classiques : '123456', 'password' ou 'azerty' sont quasiment toujours 'Instantanés'.",
     "Longueur vs Complexité : Un mot de passe très long (+12 caractères) est souvent extrêmement long à craquer, même s'il est simple.",
-    "Utilise le tableau d'aide en bas de page : Il te donne les réponses selon le nombre de caractères et leur type.",
-    "Compare les cartes : Si deux mots de passe ont la même longueur, celui avec le plus de symboles bizarres gagne !"
+    "Utilisez le tableau d'aide en bas de page : Il vous donne les réponses selon le nombre de caractères et leur type.",
+    "Comparez les cartes : Si deux mots de passe ont la même longueur, celui avec le plus de symboles bizarres gagne !"
   ];
 
   generateTips() {
